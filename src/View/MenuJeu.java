@@ -6,6 +6,7 @@ import javax.swing.plaf.DimensionUIResource;
 
 public class MenuJeu extends JPanel {
 
+    MainWindow mainWindow;
     JButton jouerButton = new JButton(" Jouer ");
     JButton historiqueButton = new JButton("Historique");
     JButton helpButton = new JButton("Aide");
@@ -13,8 +14,10 @@ public class MenuJeu extends JPanel {
     JPanel buttonsPanel = new JPanel();
     JLabel titreMenu = new JLabel("Menu Jeu");
 
-    public MenuJeu() {
+    public MenuJeu(MainWindow mainWindow) {
+
         super();
+        this.mainWindow = mainWindow;
         initialize();
 
     }
@@ -37,6 +40,10 @@ public class MenuJeu extends JPanel {
 
         buttonsPanel.setAlignmentX(CENTER_ALIGNMENT);
         this.add(buttonsPanel);
+
+        jouerButton.addActionListener(e -> {
+            mainWindow.createGameEnvironment();
+        });
 
     }
 

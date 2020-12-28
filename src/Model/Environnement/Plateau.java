@@ -518,4 +518,8 @@ public class Plateau implements Serializable, Cloneable {
         }
         return new Plateau(cases);
     }
+
+    public Case[][] getCases() {
+        return cases;
+    }
 }

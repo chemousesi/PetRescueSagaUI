@@ -19,8 +19,9 @@ public class MainWindow extends JFrame {
     private MainModel model;
     private InscriptionView inscriptionView = new InscriptionView();
     private ConnexionView connexionView = new ConnexionView();
-    private MenuJeu menuJeu = new MenuJeu();
+    private MenuJeu menuJeu = new MenuJeu(this);
     CardLayout cl = new CardLayout();
+    GamePane gamePane = new GamePane();
 
     public MainWindow() {
         super();
@@ -29,7 +30,7 @@ public class MainWindow extends JFrame {
         this.setTitle("Pet Rescue Saga");
         this.setSize(600, 600);
 
-        this.setContentPane(getJContentPane());
+        this.setContentPane(createJContentPane());
 
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setLocationRelativeTo(null);
@@ -87,7 +88,7 @@ public class MainWindow extends JFrame {
 
     }
 
-    private JPanel getJContentPane() {
+    private JPanel createJContentPane() {
 
         jContentPane = new JPanel();
         jContentPane.setAlignmentY(CENTER_ALIGNMENT);
@@ -119,8 +120,33 @@ public class MainWindow extends JFrame {
         return jContentPane;
     }
 
-    public static void music() {
+    public JPanel getJContentPane() {
+        return jContentPane;
+    }
+
+    public void createGameEnvironment() {
+
+        jContentPane.removeAll();
+        // jContentPane.add(gamePane);
+        jContentPane = gamePane;
+        jContentPane.revalidate();
+        jContentPane.repaint();
+        // jContentPane.repaint();
 
     }
 
+    JToolBar CreateGameToolBar() {
+        JToolBar jToolBar = new JToolBar();
+        jToolBar.add(new JLabel("Niveau1"));
+
+        return jToolBar;
+    }
+
+    public void chargerEnvironementJeu() {
+
+        // préparation du plateau pour le jeu
+        jContentPane = gamePane;
+        jContentPane.repaint();
+
+    }
 }
