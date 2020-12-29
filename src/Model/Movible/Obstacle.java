@@ -1,4 +1,4 @@
-package Movible;
+package Model.Movible;
 
 public class Obstacle extends Brique {
     /**

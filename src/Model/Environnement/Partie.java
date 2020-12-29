@@ -1,10 +1,10 @@
-package Environnement;
+package Model.Environnement;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import Movible.Case;
+import Model.Movible.Case;
 
 public class Partie {
     private Niveau niveauAJouer;

@@ -1,4 +1,4 @@
-package Environnement;
+package Model.Environnement;
 
 import java.io.Serializable;
 

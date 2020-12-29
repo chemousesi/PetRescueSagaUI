@@ -1,9 +1,9 @@
-package Environnement;
+package Model.Environnement;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import Movible.*;
+import Model.Movible.*;
 
 public class Plateau implements Serializable, Cloneable {
     /**
