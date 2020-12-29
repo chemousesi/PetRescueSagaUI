@@ -6,6 +6,10 @@ import javax.swing.border.EmptyBorder;
 
 public class GamePane extends JPanel {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     JLabel nomJoueur = new JLabel("nomJoueur");
     JLabel niveauActuel = new JLabel("niveau 1");
     JLabel score = new JLabel("Score : 0");
