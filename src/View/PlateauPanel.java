@@ -6,11 +6,17 @@ import java.awt.*;
 
 import Model.Environnement.Plateau;
 
-public class PlateauPanel extends JPanel {
+public class PlateauPanel extends JComponent {
 
-    public PlateauPanel(Plateau plateau) {
+    public PlateauPanel() {
         super();
-        this.setLayout(new GridLayout(plateau.getCases().length, plateau.getCases()[0].length));
+    }
 
+    @Override
+    protected void paintComponent(Graphics g) {
+        // TODO Auto-generated method stub
+        super.paintComponent(g);
+        g.setColor(Color.WHITE);
+        g.drawRect(0, 0, getWidth(), getHeight());
     }
 }
