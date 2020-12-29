@@ -1,4 +1,4 @@
-package Model.Movible;
+package Movible;
 
 import java.io.Serializable;
 

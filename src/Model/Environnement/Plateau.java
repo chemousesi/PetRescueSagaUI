@@ -1,9 +1,9 @@
-package Model.Environnement;
+package Environnement;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import Model.Movible.*;
+import Movible.*;
 
 public class Plateau implements Serializable, Cloneable {
     /**
@@ -517,9 +517,5 @@ public class Plateau implements Serializable, Cloneable {
             }
         }
         return new Plateau(cases);
-    }
-
-    public Case[][] getCases() {
-        return cases;
     }
 }

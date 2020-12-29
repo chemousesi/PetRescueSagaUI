@@ -1,4 +1,4 @@
-package Model.Environnement;
+package Environnement;
 
 public class ElementHistorique {
     private int niveau;

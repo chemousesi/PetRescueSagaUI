@@ -1,4 +1,4 @@
-package Model.Environnement;
+package Environnement;
 
 public class UserNotFound extends Exception {
 

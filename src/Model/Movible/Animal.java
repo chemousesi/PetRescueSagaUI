@@ -1,4 +1,4 @@
-package Model.Movible;
+package Movible;
 
 public class Animal extends Element {
     /**

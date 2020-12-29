@@ -1,4 +1,4 @@
-package Model.Movible;
+package Movible;
 
 public enum Couleur {
     jaune("Jaune"), rouge("Rouge"), bleu("Bleu"), violet("Violet"), orange("Orange"), gris("Gris"); /// penser à ajouter
