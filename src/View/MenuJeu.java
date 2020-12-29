@@ -1,7 +1,11 @@
 package View;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
+
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.event.MouseInputAdapter;
 import javax.swing.plaf.DimensionUIResource;
 
 public class MenuJeu extends JPanel {
@@ -29,7 +33,7 @@ public class MenuJeu extends JPanel {
 
         titreMenu.setAlignmentX(CENTER_ALIGNMENT);
         this.add(titreMenu);
-
+        this.setBorder(new EmptyBorder(100, 100, 100, 100));
         this.add(Box.createRigidArea(new DimensionUIResource(0, 20)));
 
         buttonsPanel.setLayout(new GridLayout(2, 2, 10, 10));
@@ -43,6 +47,7 @@ public class MenuJeu extends JPanel {
 
         jouerButton.addActionListener(e -> {
             mainWindow.createGameEnvironment();
+            // mainWindow.chargerEnvironementJeu();
         });
 
     }

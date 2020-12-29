@@ -20,21 +20,19 @@ public class GamePane extends JPanel {
     public GamePane() {
         super();
         this.setLayout(new BorderLayout());
-        this.setSize(700, 700);
+        this.setSize(300, 300);
 
-        // this.add(createToolBar(), BorderLayout.NORTH);
-        plateau.setSize(300, 300);
-
-        plateau.setBackground(Color.GREEN);
-        this.setBorder(new EmptyBorder(20, 20, 20, 20));
-        this.add(plateau, BorderLayout.CENTER);
+        this.setBorder(new EmptyBorder(50, 50, 50, 50));
+        this.add(new PlateauPanel(), BorderLayout.CENTER);
 
         header.setBackground(Color.RED);
+        header.setSize(plateau.getWidth(), 200);
         footer.setBackground(Color.BLUE);
 
         this.add(header, BorderLayout.NORTH);
         this.add(footer, BorderLayout.SOUTH);
         // this.add(createProgressBar(), BorderLayout.SOUTH);
+
     }
 
 }

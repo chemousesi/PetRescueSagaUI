@@ -19,14 +19,13 @@ public class ConnexionView extends JPanel {
         initilize();
 
         // initilize buttons
-
     }
 
     private void initilize() {
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        titre.setSize(100, 0);// pour avoir tout le texte apparent
+        // titre.setSize(100, 0);// pour avoir tout le texte apparent
         this.add(Box.createRigidArea(new Dimension(0, 100)));
 
         this.add(titre);
@@ -44,6 +43,7 @@ public class ConnexionView extends JPanel {
 
         formPanel.add(connectButton);
         formPanel.add(retourButton);
+
     }
 
 }
