@@ -64,11 +64,6 @@ public class MainWindow extends JFrame {
             System.exit(0);
         });
 
-        menuJeu.deconnectButton.addActionListener(e -> {
-            // faudra mettre en déconnexion l'utilisateur dans le model
-            cl.show(jContentPane, "0");
-        });
-
     }
 
     public JPanel getJContentPane() {

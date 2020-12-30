@@ -49,6 +49,12 @@ public class MenuJeu extends View {
             // mainWindow.chargerEnvironementJeu();
         });
 
+        deconnectButton.addActionListener(e -> {
+            // faudra mettre en déconnexion l'utilisateur dans le model
+            controller.setJoueur(null);
+            mainWindow.getCardLayout().show(mainWindow.getJContentPane(), "0");
+        });
+
     }
 
 }
