@@ -36,7 +36,7 @@ public class MainWindow extends JFrame {
         jContentPane.setLayout(cl);
         initialize();
 
-        // Jeu.lancerJeu();
+        Jeu.lancerJeu();
         // this.setContentPane(createJContentPane());
 
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);

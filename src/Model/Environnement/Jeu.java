@@ -118,11 +118,11 @@ public class Jeu {
 
     private static void telechargerNiveaux() {
         ObjectInputStream reader;
-        File dirNiveaux = new File("src/Niveaux");
+        File dirNiveaux = new File("src/Model/Niveaux");
         int i = 0;
         for (String path : dirNiveaux.list()) {
             try {
-                reader = new ObjectInputStream(new FileInputStream("src/Niveaux/" + path));
+                reader = new ObjectInputStream(new FileInputStream("src/Model/Niveaux/" + path));
                 niveau[i] = (Niveau) reader.readObject();
                 i++;
             } catch (FileNotFoundException e) {
@@ -150,7 +150,7 @@ public class Jeu {
         final String niv = "Niveau";
         ObjectOutputStream writer;
         try {
-            String path = "src/Niveaux/" + niv + String.valueOf(niveau.getNumero()) + ".txt";
+            String path = "src/Model/Niveaux/" + niv + String.valueOf(niveau.getNumero()) + ".txt";
             writer = new ObjectOutputStream(new FileOutputStream(path));
             writer.writeObject(niveau);
             writer.close();
@@ -162,10 +162,10 @@ public class Jeu {
     private static void telechargerJoueurs() {
         joueurs = new ArrayList<>();
         ObjectInputStream reader;
-        File dirJoueurs = new File("src/Joueurs");
+        File dirJoueurs = new File("src/Model/Joueurs");
         for (String path : dirJoueurs.list()) {
             try {
-                reader = new ObjectInputStream(new FileInputStream("src/Joueurs/" + path));
+                reader = new ObjectInputStream(new FileInputStream("src/Model/Joueurs/" + path));
                 joueurs.add((Joueur) reader.readObject());
 
             } catch (FileNotFoundException e) {
@@ -185,7 +185,7 @@ public class Jeu {
 
         try {
             for (int i = 1; i <= nbJoueurs; i++) {
-                String path = "src/Joueurs/" + joueur + String.valueOf(i) + ".txt";
+                String path = "src/Model/Joueurs/" + joueur + String.valueOf(i) + ".txt";
                 writer = new ObjectOutputStream(new FileOutputStream(path));
                 writer.writeObject(joueurs.get(i - 1));
             }
