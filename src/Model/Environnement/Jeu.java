@@ -7,10 +7,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.time.chrono.ChronoPeriod;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -250,14 +246,14 @@ public class Jeu {
         return choix;
     }
 
-    private static Joueur creerJoueur(String nom, String nomUser) {
+    public static Joueur creerJoueur(String nom, String nomUser) {
         Joueur joueur = new Joueur(nom, nomUser);
         joueurs.add(joueur);
         nbJoueurs++;
         return joueur;
     }
 
-    private static Joueur connexion(String nomUser) {
+    public static Joueur connexion(String nomUser) {
 
         for (Joueur joueur : joueurs) {
             if (joueur.getNomUtilisateur().equals(nomUser)) {

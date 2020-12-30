@@ -2,10 +2,15 @@ package View;
 
 import javax.swing.JPanel;
 import javax.swing.plaf.DimensionUIResource;
+
+import Controller.MainWindowController;
+import Model.Environnement.Jeu;
+import Model.Environnement.Joueur;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class ConnexionView extends JPanel {
+public class ConnexionView extends View {
 
     // declaration des champs
     JLabel titre = new JLabel("Connexion");
@@ -13,12 +18,10 @@ public class ConnexionView extends JPanel {
     JTextField pseudoTextField = new JTextField();
     JButton connectButton = new JButton("se connecter");
     JButton retourButton = new JButton("retour");
-    MainWindow mainWindow;
 
-    public ConnexionView(MainWindow mainWindow) {
-        super();
+    public ConnexionView(MainWindow mainWindow, MainWindowController mController) {
+        super(mainWindow, mController);
         initilize();
-        this.mainWindow = mainWindow;
 
         // initilize buttons
     }
@@ -47,12 +50,17 @@ public class ConnexionView extends JPanel {
         formPanel.add(retourButton);
 
         connectButton.addActionListener(e -> {
-            // il reste un test pour l'accès
-            mainWindow.cl.show(mainWindow.getJContentPane(), "3");
+            Joueur joueur = Jeu.connexion(pseudoTextField.getText().trim());
+            if (joueur != null) {
+                controller.setJoueur(joueur);
+                mainWindow.getCardLayout().show(mainWindow.getJContentPane(), "3");
+            } else {
+                JOptionPane.showMessageDialog(mainWindow, "Le joueur n'existe pas !!");
+            }
         });
 
         retourButton.addActionListener(e -> {
-            mainWindow.cl.show(mainWindow.getJContentPane(), "0");
+            mainWindow.getCardLayout().show(mainWindow.getJContentPane(), "0");
         });
 
     }

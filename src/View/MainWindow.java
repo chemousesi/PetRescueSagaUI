@@ -1,19 +1,12 @@
 package View;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import Controller.MainWindowController;
 import Model.MainModel;
 import Model.Environnement.Jeu;
 
 import java.awt.*;
-import javax.imageio.*;
-import java.awt.image.*;
-import java.io.File;
-import java.io.IOException;
-
-import javax.swing.plaf.DimensionUIResource;
-import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 public class MainWindow extends JFrame {
 
@@ -22,11 +15,12 @@ public class MainWindow extends JFrame {
     private JButton exitBtn = new JButton("Quitter");
     private JPanel jContentPane = new JPanel();
     private MainModel model;
-    private InscriptionView inscriptionView = new InscriptionView(this);
-    private ConnexionView connexionView = new ConnexionView(this);
-    private MenuJeu menuJeu = new MenuJeu(this);
-    CardLayout cl = new CardLayout();
-    GamePane gamePane = new GamePane();
+    private MainWindowController controller = new MainWindowController();
+    private InscriptionView inscriptionView = new InscriptionView(this, controller);
+    private ConnexionView connexionView = new ConnexionView(this, controller);
+    private MenuJeu menuJeu = new MenuJeu(this, controller);
+    private CardLayout cl = new CardLayout();
+    private GamePane gamePane = new GamePane();
 
     public MainWindow() {
         super();
@@ -65,28 +59,19 @@ public class MainWindow extends JFrame {
             cl.show(jContentPane, "2");// 2 pour l Jpanel de Inscription
         });
 
-        exitBtn.addActionListener(e -> System.exit(0));
-
-        connexionView.connectButton.addActionListener(e -> {
-            // if (Jeu.containsJoueurByUserName(connexionView.pseudoTextField.getText())) {
-            // System.out.println("accès permis");
-            // cl.show(jContentPane, "3");
-            // } else {
-            // System.out.println("compte innexistant");
-            // }
-            cl.show(jContentPane, "3");
-
-        });
-
-        menuJeu.deconnectButton.addActionListener(e -> {
-            // faudra mettre en déconnexion l'utilisateur dans le model
-            cl.show(jContentPane, "0");
+        exitBtn.addActionListener(e -> {
+            Jeu.sauvegarderJoueurs();
+            System.exit(0);
         });
 
     }
 
     public JPanel getJContentPane() {
         return jContentPane;
+    }
+
+    public CardLayout getCardLayout() {
+        return cl;
     }
 
     public void createGameEnvironment() {

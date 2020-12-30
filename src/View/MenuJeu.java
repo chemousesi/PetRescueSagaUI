@@ -1,14 +1,14 @@
 package View;
 
 import java.awt.*;
-import java.awt.event.MouseEvent;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.MouseInputAdapter;
 import javax.swing.plaf.DimensionUIResource;
 
-public class MenuJeu extends JPanel {
+import Controller.MainWindowController;
+
+public class MenuJeu extends View {
 
     MainWindow mainWindow;
     JButton jouerButton = new JButton(" Jouer ");
@@ -18,9 +18,8 @@ public class MenuJeu extends JPanel {
     JPanel buttonsPanel = new JPanel();
     JLabel titreMenu = new JLabel("Menu Jeu");
 
-    public MenuJeu(MainWindow mainWindow) {
-
-        super();
+    public MenuJeu(MainWindow mainWindow, MainWindowController controller) {
+        super(mainWindow, controller);
         this.mainWindow = mainWindow;
         initialize();
 
@@ -48,6 +47,12 @@ public class MenuJeu extends JPanel {
         jouerButton.addActionListener(e -> {
             mainWindow.createGameEnvironment();
             // mainWindow.chargerEnvironementJeu();
+        });
+
+        deconnectButton.addActionListener(e -> {
+            // faudra mettre en déconnexion l'utilisateur dans le model
+            controller.setJoueur(null);
+            mainWindow.getCardLayout().show(mainWindow.getJContentPane(), "0");
         });
 
     }
