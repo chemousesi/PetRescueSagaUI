@@ -46,13 +46,32 @@ public class Jeu {
             Joueur joueur = null;
             switch (choix_1) {
                 case 1:/// connexion
-                    joueur = connexion();
+                    System.out.println("--> Identification");
+                    System.out.print("votre pseudo : ");
+                    String nomUser = sc.next();
+                    joueur = connexion(nomUser);
                     System.out.println("----------> Connexion <----------");
                     System.out.println(joueur);
                     System.out.println("---------------------------------");
                     break;
                 case 2:/// inscription
-                    joueur = creerJoueur();
+                    System.out.println("--> Création d'un nouveau joueur");
+                    System.out.print("Saisir votre nom : ");
+                    String nom = sc.next();
+                    sc.nextLine();
+                    Joueur joueurTemp = null;
+                    boolean notAdded = false;
+                    String nomTemp = "";
+                    do {
+                        System.out.print("Saisir votre nom d'utilisateur : ");
+                        nomTemp = sc.nextLine();
+                        joueur = new Joueur(nom, nomTemp);
+                        if (joueurs.contains(joueurTemp)) {
+                            System.out.println("*** Joueur existant changer le nom d'utilisateur ***");
+                        } else
+                            notAdded = true;
+                    } while (!notAdded);
+                    joueur = creerJoueur(nom, nomTemp);
                     System.out.println("----------> inscription <----------");
                     System.out.println(joueur);
                     System.out.println("-----------------------------------");
@@ -231,31 +250,15 @@ public class Jeu {
         return choix;
     }
 
-    private static Joueur creerJoueur() {
-        System.out.println("--> Création d'un nouveau joueur");
-        System.out.print("Saisir votre nom : ");
-        String nom = sc.next();
-        sc.nextLine();
-        Joueur joueur = null;
-        boolean notAdded = false;
-        do {
-            System.out.print("Saisir votre nom d'utilisateur : ");
-            String nomUser = sc.nextLine();
-            joueur = new Joueur(nom, nomUser);
-            if (joueurs.contains(joueur)) {
-                System.out.println("*** Joueur existant changer le nom d'utilisateur ***");
-            } else
-                notAdded = true;
-        } while (!notAdded);
+    private static Joueur creerJoueur(String nom, String nomUser) {
+        Joueur joueur = new Joueur(nom, nomUser);
         joueurs.add(joueur);
         nbJoueurs++;
         return joueur;
     }
 
-    private static Joueur connexion() {
-        System.out.println("--> Identification");
-        System.out.print("votre pseudo : ");
-        String nomUser = sc.next();
+    private static Joueur connexion(String nomUser) {
+
         for (Joueur joueur : joueurs) {
             if (joueur.getNomUtilisateur().equals(nomUser)) {
                 return joueur;
