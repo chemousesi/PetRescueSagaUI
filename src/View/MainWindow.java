@@ -20,7 +20,7 @@ public class MainWindow extends JFrame {
     private ConnexionView connexionView = new ConnexionView(this, controller);
     private MenuJeu menuJeu = new MenuJeu(this, controller);
     private CardLayout cl = new CardLayout();
-    private GamePane gamePane = new GamePane();
+    private GamePane gamePane = new GamePane(controller);
 
     public MainWindow() {
         super();
