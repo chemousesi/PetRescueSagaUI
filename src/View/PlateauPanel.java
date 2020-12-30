@@ -3,6 +3,7 @@ package View;
 import javax.swing.JPanel;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.awt.event.MouseListener;
 
 import Model.Environnement.Plateau;
@@ -14,22 +15,25 @@ public class PlateauPanel extends JPanel {
     private int longBrique;
     private Plateau plateau;
     private BriqueView[][] tabBriques;
+    int currentX, currentY;
+    int recWidth, recHeight;
 
     public PlateauPanel(int col, int lig) {
         super();
         this.colonnes = col;
         this.lignes = lig;
 
+        this.addMouseListener(new MyMouseAdapter());
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         // TODO Auto-generated method stub
-        super.paintComponent(g);
+        // super.paintComponent(g);
 
-        for (int i = 30; i <= 300; i += 30) {
-            for (int j = 30; j <= 300; j += 30) {
-                g.drawRect(i, j, 30, 30);
+        for (int i = 50; i <= 500; i += 50) {
+            for (int j = 50; j <= 500; j += 50) {
+                g.drawRect(i, j, 50, 50);
             }
         }
 
@@ -41,6 +45,29 @@ public class PlateauPanel extends JPanel {
 
     public int getLignes() {
         return lignes;
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        // TODO Auto-generated method stub
+        // super.paint(g);
+        g.fillRect(currentX, currentY, recWidth, recHeight);
+    }
+
+    class MyMouseAdapter extends MouseAdapter {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            // TODO Auto-generated method stub
+            super.mouseClicked(e);
+            currentX = (int) e.getX();
+            currentY = (int) e.getY();
+            recHeight = 50;
+            recWidth = 50;
+
+            repaint();
+
+        }
     }
 
 }

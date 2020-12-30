@@ -36,7 +36,7 @@ public class MainWindow extends JFrame {
         jContentPane.setLayout(cl);
         initialize();
 
-        Jeu.lancerJeu();
+        // Jeu.lancerJeu();
         // this.setContentPane(createJContentPane());
 
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -76,12 +76,14 @@ public class MainWindow extends JFrame {
         });
 
         connexionView.connectButton.addActionListener(e -> {
-            if (Jeu.containsJoueurByUserName(connexionView.pseudoTextField.getText())) {
-                System.out.println("accès permis");
-                cl.show(jContentPane, "3");
-            } else {
-                System.out.println("compte innexistant");
-            }
+            // if (Jeu.containsJoueurByUserName(connexionView.pseudoTextField.getText())) {
+            // System.out.println("accès permis");
+            // cl.show(jContentPane, "3");
+            // } else {
+            // System.out.println("compte innexistant");
+            // }
+            cl.show(jContentPane, "3");
+
         });
 
         menuJeu.deconnectButton.addActionListener(e -> {
