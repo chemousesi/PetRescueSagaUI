@@ -26,19 +26,6 @@ public class PlateauPanel extends JPanel {
         this.addMouseListener(new MyMouseAdapter());
     }
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        // TODO Auto-generated method stub
-        // super.paintComponent(g);
-
-        for (int i = 50; i <= 500; i += 50) {
-            for (int j = 50; j <= 500; j += 50) {
-                g.drawRect(i, j, 50, 50);
-            }
-        }
-
-    }
-
     public int getColonnes() {
         return colonnes;
     }
@@ -48,10 +35,14 @@ public class PlateauPanel extends JPanel {
     }
 
     @Override
-    public void paint(Graphics g) {
-        // TODO Auto-generated method stub
-        // super.paint(g);
+    protected void paintComponent(Graphics g) {
+        for (int i = 50; i <= 500; i += 50) {
+            for (int j = 50; j <= 500; j += 50) {
+                g.drawRect(i, j, 50, 50);
+            }
+        }
         g.fillRect(currentX, currentY, recWidth, recHeight);
+
     }
 
     class MyMouseAdapter extends MouseAdapter {
@@ -64,7 +55,6 @@ public class PlateauPanel extends JPanel {
             currentY = (int) e.getY();
             recHeight = 50;
             recWidth = 50;
-
             repaint();
 
         }
