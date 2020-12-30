@@ -4,9 +4,13 @@ import javax.swing.*;
 import javax.swing.plaf.DimensionUIResource;
 import javax.swing.plaf.IconUIResource;
 
+import Controller.MainWindowController;
+import Model.Environnement.Jeu;
+import Model.Environnement.Joueur;
+
 import java.awt.*;
 
-public class InscriptionView extends JPanel {
+public class InscriptionView extends View {
 
     // declaration des champs
     JLabel titre = new JLabel("Inscription");
@@ -17,8 +21,8 @@ public class InscriptionView extends JPanel {
     JButton retourButton = new JButton("retour");
     MainWindow mainWindow;
 
-    public InscriptionView(MainWindow mainWindow) {
-        super();
+    public InscriptionView(MainWindow mainWindow, MainWindowController controller) {
+        super(mainWindow, controller);
         initilize();
         this.mainWindow = mainWindow;
 
@@ -52,10 +56,22 @@ public class InscriptionView extends JPanel {
         formPanel.add(retourButton);
 
         retourButton.addActionListener(e -> {
-            mainWindow.cl.show(mainWindow.getJContentPane(), "0");
+            mainWindow.getCardLayout().show(mainWindow.getJContentPane(), "0");
         });
         registerButton.addActionListener(e -> {
-            mainWindow.cl.show(mainWindow.getJContentPane(), "3");
+            String nom = nomTextField.getText().trim();
+            String pseudo = pseudoTextField.getText().trim();
+            if (!nom.isEmpty() && !pseudo.isEmpty()) {
+                if (Jeu.connexion(pseudo) == null) {
+                    Joueur joueur = Jeu.creerJoueur(nom, pseudo);
+                    controller.setJoueur(joueur);
+                    mainWindow.getCardLayout().show(mainWindow.getJContentPane(), "3");
+                } else {
+                    /// affichage d'une alerte pour dire que le joueur existe.
+                }
+            } else {
+                // affichage d'une alerte.
+            }
 
         });
 
