@@ -23,11 +23,11 @@ public class GamePane extends JPanel {
         this.setSize(300, 300);
 
         this.setBorder(new EmptyBorder(50, 50, 50, 50));
-        this.add(new PlateauPanel(), BorderLayout.CENTER);
+        this.add(new PlateauPanel(4, 5), BorderLayout.CENTER);
 
-        header.setBackground(Color.RED);
+        header.setBackground(Color.GREEN);
         header.setSize(plateau.getWidth(), 200);
-        footer.setBackground(Color.BLUE);
+        footer.setBackground(Color.green);
 
         this.add(header, BorderLayout.NORTH);
         this.add(footer, BorderLayout.SOUTH);

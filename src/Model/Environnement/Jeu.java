@@ -263,4 +263,13 @@ public class Jeu {
         }
         return null;
     }
+
+    public static boolean containsJoueurByUserName(String uName) {
+        for (Joueur joueur : joueurs) {
+            if (joueur.getNomUtilisateur().equals(uName))
+                return true;
+        }
+        return false;
+
+    }
 }

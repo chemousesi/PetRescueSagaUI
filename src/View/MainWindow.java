@@ -4,6 +4,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import Model.MainModel;
+import Model.Environnement.Jeu;
 
 import java.awt.*;
 import javax.imageio.*;
@@ -35,17 +36,18 @@ public class MainWindow extends JFrame {
         jContentPane.setLayout(cl);
         initialize();
 
+        Jeu.lancerJeu();
         // this.setContentPane(createJContentPane());
 
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setLocationRelativeTo(null);
 
-        // jContentPane.add(createJContentPane(), "0");
         jContentPane.add(welcomeMenu(), "0");
         jContentPane.add(inscriptionView, "2");
         jContentPane.add(connexionView, "1");
         jContentPane.add(menuJeu, "3");
         jContentPane.add(gamePane, "4");
+
         cl.show(jContentPane, "0");
         this.add(jContentPane);
 
@@ -74,7 +76,7 @@ public class MainWindow extends JFrame {
         });
 
         connexionView.connectButton.addActionListener(e -> {
-            if (connexionView.pseudoTextField.getText().equals("c")) {
+            if (Jeu.containsJoueurByUserName(connexionView.pseudoTextField.getText())) {
                 System.out.println("accès permis");
                 cl.show(jContentPane, "3");
             } else {
@@ -87,38 +89,6 @@ public class MainWindow extends JFrame {
             cl.show(jContentPane, "0");
         });
 
-    }
-
-    private JPanel createJContentPane() {
-
-        // jContentPane = new JPanel();
-        jContentPane.setAlignmentY(CENTER_ALIGNMENT);
-
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        jContentPane.add(panel, BorderLayout.CENTER); // ajouter le panel à contentpane
-
-        JLabel gameTitle = new JLabel("Pet rescue Saga");
-        gameTitle.setSize(100, 0);// pour avoir tout le texte apparent
-        panel.add(Box.createRigidArea(new Dimension(0, 100)));
-
-        panel.add(gameTitle);
-        gameTitle.setAlignmentX(CENTER_ALIGNMENT);
-        panel.add(Box.createRigidArea(new Dimension(0, 30)));
-
-        panel.add(connectBtn);
-        connectBtn.setAlignmentX(CENTER_ALIGNMENT);
-        panel.add(Box.createRigidArea(new Dimension(0, 30)));
-
-        panel.add(registerBtn);
-        panel.add(Box.createRigidArea(new Dimension(0, 30)));
-        registerBtn.setAlignmentX(CENTER_ALIGNMENT);
-
-        panel.add(exitBtn);
-        exitBtn.setAlignmentX(CENTER_ALIGNMENT);
-        panel.setAlignmentY(CENTER_ALIGNMENT);
-
-        return jContentPane;
     }
 
     public JPanel getJContentPane() {
