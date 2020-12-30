@@ -67,10 +67,10 @@ public class InscriptionView extends View {
                     controller.setJoueur(joueur);
                     mainWindow.getCardLayout().show(mainWindow.getJContentPane(), "3");
                 } else {
-                    /// affichage d'une alerte pour dire que le joueur existe.
+                    JOptionPane.showMessageDialog(mainWindow, "Le joueur existe déjà !!");
                 }
             } else {
-                // affichage d'une alerte.
+                JOptionPane.showMessageDialog(mainWindow, "Il faut renseigner tout les champs !!");
             }
 
         });

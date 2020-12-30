@@ -55,7 +55,7 @@ public class ConnexionView extends View {
                 controller.setJoueur(joueur);
                 mainWindow.getCardLayout().show(mainWindow.getJContentPane(), "3");
             } else {
-                /// affichage d'une alerte.
+                JOptionPane.showMessageDialog(mainWindow, "Le joueur n'existe pas !!");
             }
         });
 
