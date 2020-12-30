@@ -13,10 +13,12 @@ public class ConnexionView extends JPanel {
     JTextField pseudoTextField = new JTextField();
     JButton connectButton = new JButton("se connecter");
     JButton retourButton = new JButton("retour");
+    MainWindow mainWindow;
 
-    public ConnexionView() {
+    public ConnexionView(MainWindow mainWindow) {
         super();
         initilize();
+        this.mainWindow = mainWindow;
 
         // initilize buttons
     }
@@ -43,6 +45,15 @@ public class ConnexionView extends JPanel {
 
         formPanel.add(connectButton);
         formPanel.add(retourButton);
+
+        connectButton.addActionListener(e -> {
+            // il reste un test pour l'accès
+            mainWindow.cl.show(mainWindow.getJContentPane(), "3");
+        });
+
+        retourButton.addActionListener(e -> {
+            mainWindow.cl.show(mainWindow.getJContentPane(), "0");
+        });
 
     }
 

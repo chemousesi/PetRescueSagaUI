@@ -22,8 +22,8 @@ public class MainWindow extends JFrame {
     private JButton exitBtn = new JButton("Quitter");
     private JPanel jContentPane = new JPanel();
     private MainModel model;
-    private InscriptionView inscriptionView = new InscriptionView();
-    private ConnexionView connexionView = new ConnexionView();
+    private InscriptionView inscriptionView = new InscriptionView(this);
+    private ConnexionView connexionView = new ConnexionView(this);
     private MenuJeu menuJeu = new MenuJeu(this);
     CardLayout cl = new CardLayout();
     GamePane gamePane = new GamePane();
@@ -66,14 +66,6 @@ public class MainWindow extends JFrame {
         });
 
         exitBtn.addActionListener(e -> System.exit(0));
-
-        inscriptionView.retourButton.addActionListener(e -> {
-            cl.show(jContentPane, "0");
-        });
-
-        connexionView.retourButton.addActionListener(e -> {
-            cl.show(jContentPane, "0");
-        });
 
         connexionView.connectButton.addActionListener(e -> {
             // if (Jeu.containsJoueurByUserName(connexionView.pseudoTextField.getText())) {

@@ -15,10 +15,12 @@ public class InscriptionView extends JPanel {
     JTextField pseudoTextField = new JTextField();
     JButton registerButton = new JButton("s'inscrire");
     JButton retourButton = new JButton("retour");
+    MainWindow mainWindow;
 
-    public InscriptionView() {
+    public InscriptionView(MainWindow mainWindow) {
         super();
         initilize();
+        this.mainWindow = mainWindow;
 
         // initilize buttons
 
@@ -48,6 +50,14 @@ public class InscriptionView extends JPanel {
 
         formPanel.add(registerButton);
         formPanel.add(retourButton);
+
+        retourButton.addActionListener(e -> {
+            mainWindow.cl.show(mainWindow.getJContentPane(), "0");
+        });
+        registerButton.addActionListener(e -> {
+            mainWindow.cl.show(mainWindow.getJContentPane(), "3");
+
+        });
 
     }
 
