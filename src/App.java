@@ -7,8 +7,6 @@ import View.*;
 
 public class App {
 
-    // static MainWindow mainWindow = new MainWindow();
-
     public static void main(String[] args) throws Exception {
         UIManager.setLookAndFeel(new NimbusLookAndFeel());
 
