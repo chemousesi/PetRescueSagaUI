@@ -1,8 +1,13 @@
 package View;
 
 import java.awt.*;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import java.awt.image.*;
+import java.io.File;
+import java.io.IOException;
 
 import Controller.MainWindowController;
 
@@ -27,7 +32,17 @@ public class GamePane extends JPanel {
     JPanel header = new JPanel();
     JPanel footer = new JPanel();
 
+    BufferedImage image;
+
     public GamePane() {
+        chargerImage("imgs/bg_min.jpg");
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        // TODO Auto-generated method stub
+        super.paintComponent(g);
+        g.drawImage(image, 0, 0, null);
     }
 
     public void initialise(MainWindow mainWindow, MainWindowController controller) {
@@ -36,7 +51,7 @@ public class GamePane extends JPanel {
 
         this.setLayout(new BorderLayout());
 
-        this.setBorder(new EmptyBorder(50, 50, 50, 50));
+        this.setBorder(new EmptyBorder(100, 100, 100, 100));
 
         this.add(new PlateauPanel(controller), BorderLayout.CENTER);
 
@@ -50,6 +65,15 @@ public class GamePane extends JPanel {
         this.add(header, BorderLayout.NORTH);
         this.add(footer, BorderLayout.SOUTH);
 
+    }
+
+    public void chargerImage(String chemin) {
+
+        try {
+            image = ImageIO.read(new File(chemin));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

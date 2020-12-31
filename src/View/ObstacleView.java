@@ -17,7 +17,7 @@ public class ObstacleView extends ComponentView {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setColor(Color.gray);
-        g.fillRect(0, 0, getWidth() - 40, 50);
+        g.fillRect(10, 10, getWidth() - 10, getHeight() - 10);
     }
 
 }
