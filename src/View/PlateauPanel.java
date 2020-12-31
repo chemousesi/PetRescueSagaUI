@@ -9,7 +9,6 @@ import javax.imageio.ImageIO;
 import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
-import Model.Environnement.Plateau;
 import Model.Movible.Case;
 
 public class PlateauPanel extends JPanel {
@@ -20,10 +19,7 @@ public class PlateauPanel extends JPanel {
     private static final long serialVersionUID = 1L;
     private int colonnes;
     private int lignes;
-    int currentX, currentY;
-    int recWidth, recHeight;
-    MainWindowController controller;
-    Color color = Color.red;
+    private MainWindowController controller;
 
     BufferedImage image;
 
@@ -31,6 +27,7 @@ public class PlateauPanel extends JPanel {
         super();
         this.controller = controller;
         chargerImage("imgs/bg.jpg");
+        this.setOpaque(false);
         this.lignes = this.controller.getPartie().getNiveauAJouer().getPlateau().lignes - 2;
         this.colonnes = this.controller.getPartie().getNiveauAJouer().getPlateau().colonnes - 2;
         GridLayout gridLayout = new GridLayout(lignes, colonnes);
@@ -44,23 +41,25 @@ public class PlateauPanel extends JPanel {
         for (int i = 1; i <= lignes; i++) {
             for (int j = 1; j <= colonnes; j++) {
                 Case temp = this.controller.getPartie().getNiveauAJouer().getPlateau().getCase(i, j);
-                if (!temp.estUnAnimal()) {
-                    if (temp.getElement().estMobile())
-                        // this.add(new BriqueView(i, j, new
-                        // Color(temp.getBrique().getCouleur().getRed(),
-                        this.add(new BriqueView(i, j, color));
-                    // temp.getBrique().getCouleur().getGreen(),
-                    // temp.getBrique().getCouleur().getBlue())));
-                    else
-                        this.add(new ObstacleView(i, j));
+                if (temp.estVide()) {
+                    this.add(new ObstacleView(i, j));
                 } else {
-                    this.add(new AnimalView(i, j, "imgs/dog.png"));
+                    if (!temp.estUnAnimal()) {
+                        if (temp.getElement().estMobile())
+                            this.add(new BriqueView(i, j,
+                                    new Color(temp.getBrique().getCouleur().getRed(),
+                                            temp.getBrique().getCouleur().getGreen(),
+                                            temp.getBrique().getCouleur().getBlue())));
+                        else
+                            this.add(new ObstacleView(i, j));
+                    } else {
+                        this.add(new AnimalView(i, j, "imgs/cat.png"));
+                    }
                 }
             }
 
         }
         revalidate();
-
     }
 
     public int getColonnes() {
@@ -71,17 +70,12 @@ public class PlateauPanel extends JPanel {
         return lignes;
     }
 
-    // @Override
-    // protected void paintComponent(Graphics g) {
-    // super.paintComponent(g);
-    // remplireGridLayoutFromPlateau();
-    // }
-
     public class BriqueView extends ComponentView {
         /**
          *
          */
         private static final long serialVersionUID = 1L;
+
         private Color color;
 
         public BriqueView(int i, int j, Color c) {
@@ -94,16 +88,27 @@ public class PlateauPanel extends JPanel {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             g.setColor(color);
-            g.fillRect(20, 10, getWidth() - 40, getHeight() - 20);
+            g.fillRect(10, 10, getWidth() - 10, getHeight() - 10);
+
         }
 
         class MyMouseAdapter extends MouseAdapter {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                PlateauPanel.this.color = Color.black;
+                PlateauPanel.this.controller.getPartie().getNiveauAJouer().getPlateau().detruire(BriqueView.this.l,
+                        BriqueView.this.c, false);
+
+                try {
+                    PlateauPanel.this.controller.getPartie().getNiveauAJouer().getPlateau().reorganiserPlateau();
+                } catch (CloneNotSupportedException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+
                 PlateauPanel.this.removeAll();
-                remplireGridLayoutFromPlateau();
+                PlateauPanel.this.remplireGridLayoutFromPlateau();
+                PlateauPanel.this.revalidate();
             }
 
         }
@@ -117,5 +122,4 @@ public class PlateauPanel extends JPanel {
             e.printStackTrace();
         }
     }
-
 }
