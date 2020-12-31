@@ -130,8 +130,10 @@ public class PlateauPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+
                 System.out.println("brique cliquée");
                 System.out.println("colonne : " + BriqueView.this.c);
+
                 PlateauPanel.this.controller.getPartie().getNiveauAJouer().getPlateau().detruire(BriqueView.this.l,
                         BriqueView.this.c, false);
 
@@ -143,7 +145,6 @@ public class PlateauPanel extends JPanel {
                 }
 
                 PlateauPanel.this.removeAll();
-
                 PlateauPanel.this.remplireGridLayoutFromPlateau();
                 PlateauPanel.this.revalidate();
             }

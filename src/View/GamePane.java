@@ -32,10 +32,14 @@ public class GamePane extends JPanel {
     JPanel header = new JPanel();
     JPanel footer = new JPanel();
 
+    private Icon bmbImage, missileImage, indiceImage;
+
     BufferedImage image;
 
     public GamePane() {
         chargerImage("imgs/bg_min.jpg");
+        chargerIcons();
+
     }
 
     @Override
@@ -55,12 +59,10 @@ public class GamePane extends JPanel {
 
         this.add(new PlateauPanel(controller), BorderLayout.CENTER);
 
-        header.setBackground(Color.GREEN);
-        footer.setBackground(Color.green);
+        setHeader();// organiser la vue du header
+        setFooter();// organiser la vue du footer
 
         nomJoueur.setForeground(Color.red);
-        header.add(nomJoueur, BorderLayout.WEST);
-        header.add(score, BorderLayout.EAST);
 
         this.add(header, BorderLayout.NORTH);
         this.add(footer, BorderLayout.SOUTH);
@@ -74,6 +76,57 @@ public class GamePane extends JPanel {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setFooter() {
+        // remplir le footer avec les boutons des aides
+
+        footer.setLayout(new FlowLayout());
+        footer.setOpaque(false);
+
+        JButton missileButton = new JButton(bmbImage);
+        JButton bombButton = new JButton(missileImage);
+        JButton indiceButton = new JButton(indiceImage);
+
+        missileButton.setOpaque(false);
+        bombButton.setOpaque(false);
+        bombButton.setOpaque(false);
+
+        footer.add(missileButton);
+        footer.add(bombButton);
+        footer.add(indiceButton);
+
+        missileButton.addActionListener(e -> {
+            controller.setMissileActive(true);
+
+        });
+        bombButton.addActionListener(e -> {
+            controller.setBombActive(true);
+        });
+
+        indiceButton.addActionListener(e -> {
+            controller.setIndiceActive(true);
+        });
+
+    }
+
+    public void setHeader() {
+        header.setBackground(Color.GREEN);
+        header.add(nomJoueur, BorderLayout.WEST);
+        header.add(score, BorderLayout.EAST);
+
+    }
+
+    public void chargerIcons() {
+
+        try {
+            bmbImage = new ImageIcon("imgs/bomb.png");
+            missileImage = new ImageIcon("imgs/missile.png");
+            indiceImage = new ImageIcon("imgs/indice.png");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 }

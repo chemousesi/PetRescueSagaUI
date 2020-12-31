@@ -7,6 +7,9 @@ import Model.Environnement.Partie;
 public class MainWindowController {
     private Joueur joueur;
     private Partie partie;
+    private boolean missileActive = false;
+    private boolean bombActive = false;
+    private boolean indiceActive = false;
 
     public MainWindowController() {
         super();
@@ -28,5 +31,29 @@ public class MainWindowController {
 
     public Partie getPartie() {
         return partie;
+    }
+
+    public void setMissileActive(boolean missileActive) {
+        this.missileActive = missileActive;
+    }
+
+    public boolean getMissileActive() {
+        return missileActive;
+    }
+
+    public void setBombActive(boolean bombActive) {
+        this.bombActive = bombActive;
+    }
+
+    public boolean getBombActive() {
+        return bombActive;
+    }
+
+    public void setIndiceActive(boolean indice) {
+        this.indiceActive = indice;
+    }
+
+    public boolean getIndiceActive() {
+        return indiceActive;
     }
 }
