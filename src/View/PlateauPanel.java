@@ -91,7 +91,7 @@ public class PlateauPanel extends JPanel {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             g.setColor(color);
-            g.fillRect(10, 10, getWidth() - 20, getHeight() - 20);
+            g.fillRect(10, 10, getWidth() - 10, getHeight() - 10);
 
         }
 
