@@ -20,7 +20,7 @@ public class MainWindow extends JFrame {
     private ConnexionView connexionView = new ConnexionView(this, controller);
     private MenuJeu menuJeu = new MenuJeu(this, controller);
     private CardLayout cl = new CardLayout();
-    private GamePane gamePane = new GamePane(controller);
+    private GamePane gamePane = new GamePane();
 
     public MainWindow() {
         super();
@@ -74,9 +74,8 @@ public class MainWindow extends JFrame {
         return cl;
     }
 
-    public void createGameEnvironment() {
-        cl.show(jContentPane, "4");
-
+    public GamePane getGamePane() {
+        return gamePane;
     }
 
     public void chargerEnvironementJeu() {

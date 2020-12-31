@@ -27,7 +27,7 @@ public class Jeu {
         telechargerParametresDuJeu();
     }
 
-    private static Partie lancerPartie(Joueur joueur) {
+    public static Partie lancerPartie(Joueur joueur) {
         if (joueur.getniveauActuel() > nbNiveaux)
             return null;
         return new Partie(niveau[joueur.getniveauActuel() - 1], joueur);

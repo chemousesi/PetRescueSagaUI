@@ -158,4 +158,8 @@ public class Partie {
         }
     }
 
+    public Niveau getNiveauAJouer() {
+        return niveauAJouer;
+    }
+
 }

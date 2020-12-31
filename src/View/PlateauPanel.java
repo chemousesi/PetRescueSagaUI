@@ -5,14 +5,12 @@ import Controller.MainWindowController;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.event.MouseListener;
 import javax.imageio.ImageIO;
 import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
-
-import Model.Environnement.Jeu;
 import Model.Environnement.Plateau;
+import Model.Movible.Case;
 
 public class PlateauPanel extends JPanel {
 
@@ -27,25 +25,39 @@ public class PlateauPanel extends JPanel {
 
     BufferedImage image;
 
-    public PlateauPanel(int col, int lig, MainWindowController controller) {
+    public PlateauPanel(MainWindowController controller) {
         super();
-        this.colonnes = col;
-        this.lignes = lig;
         this.controller = controller;
-        // this.setSize(100, 100);
-
         chargerImage("imgs/bg.jpg");
         this.addMouseListener(new MyMouseAdapter());
-
-        GridLayout gridLayout = new GridLayout(4, 4);
+        this.lignes = this.controller.getPartie().getNiveauAJouer().getPlateau().lignes - 2;
+        this.colonnes = this.controller.getPartie().getNiveauAJouer().getPlateau().colonnes - 2;
+        GridLayout gridLayout = new GridLayout(lignes, colonnes);
         gridLayout.setHgap(0);
-        gridLayout.setVgap(0);
         gridLayout.preferredLayoutSize(this);
-
+        remplireGridLayoutFromPlateau();
         this.setLayout(gridLayout);
+    }
 
-        initialiserNiveau1();
+    private void remplireGridLayoutFromPlateau() {
+        for (int i = 1; i <= colonnes; i++) {
+            for (int j = 1; j <= lignes; j++) {
+                Case temp = this.controller.getPartie().getNiveauAJouer().getPlateau().getCase(j, i);
+                // this.add(temp.estUnAnimal() ? new AnimalView()
+                // : temp.getElement().estMobile()
+                // ? new BriqueView(i, j,
+                // new Color(temp.getBrique().getCouleur().getRed(),
+                // temp.getBrique().getCouleur().getGreen(),
+                // temp.getBrique().getCouleur().getBlue()))
+                // : new ObstacleView());
+                if (!temp.estUnAnimal()) {
+                    this.add(new BriqueView(i, j, new Color(255, 200, 100)));
+                } else {
+                    this.add(new AnimalView());
+                }
+            }
 
+        }
     }
 
     public int getColonnes() {
@@ -129,12 +141,6 @@ public class PlateauPanel extends JPanel {
         this.add(b16);
         this.add(b17);
         this.add(b18);
-
-        // this.add(b5);
-
-        // this.add(new JButton("A"));
-        // this.add(new JButton("B"));
-
     }
 
 }

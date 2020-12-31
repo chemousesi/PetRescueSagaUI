@@ -10,8 +10,8 @@ public class Plateau implements Serializable, Cloneable {
      *
      */
     private static final long serialVersionUID = 1L;
-    int lignes;
-    int colonnes;
+    public int lignes;
+    public int colonnes;
     private Case cases[][];
 
     public Plateau(Case[][] cases) {

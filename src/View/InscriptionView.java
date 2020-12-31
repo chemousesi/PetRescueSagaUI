@@ -19,12 +19,10 @@ public class InscriptionView extends View {
     JTextField pseudoTextField = new JTextField();
     JButton registerButton = new JButton("s'inscrire");
     JButton retourButton = new JButton("retour");
-    MainWindow mainWindow;
 
     public InscriptionView(MainWindow mainWindow, MainWindowController controller) {
         super(mainWindow, controller);
         initilize();
-        this.mainWindow = mainWindow;
 
         // initilize buttons
 
@@ -65,6 +63,7 @@ public class InscriptionView extends View {
                 if (Jeu.connexion(pseudo) == null) {
                     Joueur joueur = Jeu.creerJoueur(nom, pseudo);
                     controller.setJoueur(joueur);
+                    mainWindow.getGamePane().initialise(mainWindow, controller);
                     mainWindow.getCardLayout().show(mainWindow.getJContentPane(), "3");
                 } else {
                     JOptionPane.showMessageDialog(mainWindow, "Le joueur existe déjà !!");
