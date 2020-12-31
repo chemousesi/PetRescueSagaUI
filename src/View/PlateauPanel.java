@@ -10,6 +10,7 @@ import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
 import Model.Environnement.Plateau;
+import Model.Movible.Animal;
 import Model.Movible.Case;
 
 public class PlateauPanel extends JPanel {
@@ -40,20 +41,17 @@ public class PlateauPanel extends JPanel {
     }
 
     private void remplireGridLayoutFromPlateau() {
-        for (int i = 1; i <= colonnes; i++) {
-            for (int j = 1; j <= lignes; j++) {
-                Case temp = this.controller.getPartie().getNiveauAJouer().getPlateau().getCase(j, i);
-                // this.add(temp.estUnAnimal() ? new AnimalView()
-                // : temp.getElement().estMobile()
-                // ? new BriqueView(i, j,
-                // new Color(temp.getBrique().getCouleur().getRed(),
-                // temp.getBrique().getCouleur().getGreen(),
-                // temp.getBrique().getCouleur().getBlue()))
-                // : new ObstacleView());
+        for (int i = 1; i <= lignes; i++) {
+            for (int j = 1; j <= colonnes; j++) {
+                Case temp = this.controller.getPartie().getNiveauAJouer().getPlateau().getCase(i, j);
                 if (!temp.estUnAnimal()) {
-                    this.add(new BriqueView(i, j, new Color(255, 200, 100)));
+                    if (temp.getElement().estMobile())
+                        this.add(new BriqueView(i, j, new Color(temp.getBrique().getCouleur().getRed(),
+                                temp.getBrique().getCouleur().getGreen(), temp.getBrique().getCouleur().getBlue())));
+                    else
+                        this.add(new ObstacleView(i, j));
                 } else {
-                    this.add(new AnimalView());
+                    this.add(new AnimalView(i, j, "imgs/dog.png"));
                 }
             }
 

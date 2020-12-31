@@ -9,46 +9,33 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.*;
 
-public class BriqueView extends JComponent {
+public class BriqueView extends ComponentView {
     /**
      *
      */
     private static final long serialVersionUID = 1L;
     Brique brique;
     Color color;
-    int c;
-    int l;
     BufferedImage image;
 
     public BriqueView(int i, int j, Color c) {
-        this.l = j;
-        this.c = j;
+        super(i, j);
         this.color = c;
-        // chargerImage("imgs./dog.png");
+        this.addMouseListener(new MyMouseAdapter());
     }
 
     @Override
     protected void paintComponent(Graphics g) {
-        // TODO Auto-generated method stub
         super.paintComponent(g);
-
         g.setColor(color);
-        g.fillRect(0, 0, 50, 50);
-        // g.drawImage(image, 20, 20, null);
-    }
-
-    public void chargerImage(String chemin) {
-        try {
-            image = ImageIO.read(new File(chemin));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        g.fillRect(15, 10, getWidth() - 30, getHeight() - 20);
     }
 
     class MyMouseAdapter extends MouseAdapter {
         @Override
         public void mouseClicked(MouseEvent e) {
             super.mouseClicked(e);
+            System.out.println("bezzi");
         }
 
     }
