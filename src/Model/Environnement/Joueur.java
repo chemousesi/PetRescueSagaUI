@@ -18,7 +18,7 @@ public class Joueur implements Serializable {
     public Joueur(String nom, String nomUser) {
         this.nom = nom;
         this.score = 0;
-        this.niveauActuel = 1;
+        this.niveauActuel = 2;
         this.nomUtilisateur = nomUser;
     }
 

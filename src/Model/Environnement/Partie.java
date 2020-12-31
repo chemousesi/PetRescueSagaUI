@@ -21,12 +21,12 @@ public class Partie {
         this.abondonner = false;
     }
 
-    private boolean estGagne() {
+    public boolean estGagne() {
         return niveauAJouer.getConditionsDeGagner().getNbAnimauxASauver() == this.nbAnimauxSauves
                 && niveauAJouer.getConditionsDeGagner().getNbPointsAGagner() <= this.nbPointsGangerParLeJoueur;
     }
 
-    private boolean estPerdue() {
+    public boolean estPerdue() {
         /// faire le traitement pour savoir si la partie est perdue.
         int nbPointsGagnes = 0;
         Plateau clone = null;
@@ -147,15 +147,26 @@ public class Partie {
 
         }
         if (estGagne()) {
-            this.joueur.incrementerNivActuel();
-            this.joueur.incrementeScore(nbPointsGangerParLeJoueur + 10 * nbAnimauxSauves);
-            this.joueur.addElemToHistorique(this.niveauAJouer.getNumero(), nbPointsGangerParLeJoueur);
+            passerNiveauSuivant();
             System.out.println("Le partie est gagné !!!");
         } else if (abondonner) {
             /// traitement ici
         } else {
             System.out.println("La partie est perdue !!");
         }
+    }
+
+    public void passerNiveauSuivant() {
+        this.joueur.incrementerNivActuel();
+        this.joueur.incrementeScore(nbPointsGangerParLeJoueur + 10 * nbAnimauxSauves);
+        this.joueur.addElemToHistorique(this.niveauAJouer.getNumero(), nbPointsGangerParLeJoueur);
+    }
+
+    public void jouerUnTour(int l, int c) throws CloneNotSupportedException {
+        this.nbPointsGangerParLeJoueur += this.niveauAJouer.getPlateau().detruire(l, c, false);
+        this.niveauAJouer.getPlateau().reorganiserPlateau();
+        this.nbAnimauxSauves += this.niveauAJouer.getPlateau().animalSauve();
+        System.out.println(this.nbPointsGangerParLeJoueur + " " + this.nbAnimauxSauves);
     }
 
     public Niveau getNiveauAJouer() {

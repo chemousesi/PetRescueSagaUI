@@ -51,9 +51,9 @@ public class GamePane extends JPanel {
 
         this.setLayout(new BorderLayout());
 
-        this.setBorder(new EmptyBorder(100, 100, 100, 100));
+        // this.setBorder(new EmptyBorder(100, 100, 100, 100));
 
-        this.add(new PlateauPanel(controller), BorderLayout.CENTER);
+        this.add(new PlateauPanel(mainWindow, controller), BorderLayout.CENTER);
 
         header.setBackground(Color.GREEN);
         footer.setBackground(Color.green);

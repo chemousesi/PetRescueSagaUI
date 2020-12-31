@@ -20,11 +20,15 @@ public class PlateauPanel extends JPanel {
     private int colonnes;
     private int lignes;
     private MainWindowController controller;
+    private MainWindow mainWindow;
     private BufferedImage image;
 
-    public PlateauPanel(MainWindowController controller) {
+    public PlateauPanel(MainWindow mainWindow, MainWindowController controller) {
         super();
+        this.removeAll();
+        this.revalidate();
         this.controller = controller;
+        this.mainWindow = mainWindow;
         chargerImage("imgs/bg.jpg");
         this.setOpaque(false);
         this.lignes = this.controller.getPartie().getNiveauAJouer().getPlateau().lignes - 2;
@@ -87,7 +91,7 @@ public class PlateauPanel extends JPanel {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             g.setColor(color);
-            g.fillRect(10, 10, getWidth() - 10, getHeight() - 10);
+            g.fillRect(10, 10, getWidth() - 20, getHeight() - 20);
 
         }
 
@@ -95,19 +99,24 @@ public class PlateauPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                PlateauPanel.this.controller.getPartie().getNiveauAJouer().getPlateau().detruire(BriqueView.this.l,
-                        BriqueView.this.c, false);
 
                 try {
-                    PlateauPanel.this.controller.getPartie().getNiveauAJouer().getPlateau().reorganiserPlateau();
+                    PlateauPanel.this.controller.getPartie().jouerUnTour(l, c);
                 } catch (CloneNotSupportedException e1) {
-                    // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }
 
                 PlateauPanel.this.removeAll();
                 PlateauPanel.this.remplireGridLayoutFromPlateau();
                 PlateauPanel.this.revalidate();
+                if (PlateauPanel.this.controller.getPartie().estGagne()) {
+                    PlateauPanel.this.controller.getPartie().passerNiveauSuivant();
+                    JOptionPane.showMessageDialog(PlateauPanel.this, "La partie est gagné !!");
+                    PlateauPanel.this.mainWindow.getCardLayout().show(PlateauPanel.this.mainWindow.getJContentPane(),
+                            "3");
+                } else if (PlateauPanel.this.controller.getPartie().estPerdue()) {
+                    /// affichage d'une alerte
+                }
             }
 
         }
