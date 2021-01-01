@@ -27,5 +27,10 @@ public class Animal extends Element {
         return "$";
     }
 
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        // TODO Auto-generated method stub
+        return super.clone();
+    }
 }
 // ajouter des animaux comme sous classes

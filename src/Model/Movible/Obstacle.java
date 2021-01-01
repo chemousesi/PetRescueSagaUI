@@ -21,4 +21,10 @@ public class Obstacle extends Brique {
         return "\u0800";
     }
 
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        // TODO Auto-generated method stub
+        return super.clone();
+    }
+
 }

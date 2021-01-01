@@ -166,11 +166,24 @@ public class Partie {
         this.nbPointsGangerParLeJoueur += this.niveauAJouer.getPlateau().detruire(l, c, false);
         this.niveauAJouer.getPlateau().reorganiserPlateau();
         this.nbAnimauxSauves += this.niveauAJouer.getPlateau().animalSauve();
+        Jeu.getNiveau(joueur.getniveauActuel() - 1).getPlateau().afficher();
         System.out.println(this.nbPointsGangerParLeJoueur + " " + this.nbAnimauxSauves);
     }
 
     public Niveau getNiveauAJouer() {
         return niveauAJouer;
+    }
+
+    public int getNbPointsGangerParLeJoueur() {
+        return nbPointsGangerParLeJoueur;
+    }
+
+    public int getNbAnimauxSauves() {
+        return nbAnimauxSauves;
+    }
+
+    public void setNiveauAJouer(Niveau niveauAJouer) {
+        this.niveauAJouer = niveauAJouer;
     }
 
 }
