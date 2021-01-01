@@ -22,6 +22,9 @@ public class MainWindow extends JFrame {
     private CardLayout cl = new CardLayout();
     private GamePane gamePane = new GamePane();
 
+    private JMenuItem deconnexion = new JMenuItem("Deconnexion");
+    private JMenuItem exit = new JMenuItem("Quitter");
+
     public MainWindow() {
         super();
         this.setTitle("Pet Rescue Saga");
@@ -60,7 +63,6 @@ public class MainWindow extends JFrame {
         });
 
         exitBtn.addActionListener(e -> {
-            Jeu.sauvegarderJoueurs();
             System.exit(0);
         });
 
@@ -88,9 +90,6 @@ public class MainWindow extends JFrame {
 
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
-        // jContentPane.add(panel, BorderLayout.CENTER); // ajouter le panel à
-        // contentpane
 
         ImageIcon docIcon = new ImageIcon("imgs/dog.png");
 
@@ -138,26 +137,30 @@ public class MainWindow extends JFrame {
         JMenu jeuMenu = new JMenu("Jeu");
         menuBar.add(jeuMenu);
 
-        JMenuItem newGame = new JMenuItem("Nouveau Jeu");
-        jeuMenu.add(newGame);
+        deconnexion.setEnabled(false);
+        jeuMenu.add(deconnexion);
 
-        JMenuItem nouveauJoueurMenuItem = new JMenuItem("Nouveau Joueur");
-        jeuMenu.add(nouveauJoueurMenuItem);
-
-        nouveauJoueurMenuItem.addActionListener(e -> {
-            cl.show(jContentPane, "2");
-        });
+        jeuMenu.add(exit);
 
         jeuMenu.addSeparator();
 
-        JMenuItem retourMenuitem = new JMenuItem("Menu");
-        jeuMenu.add(retourMenuitem);
-
-        retourMenuitem.addActionListener(e -> {
-            cl.show(jContentPane, "0");
+        deconnexion.addActionListener((e) -> {
+            controller.setJoueur(null);
+            if (this.gamePane.getPlateauPanel() != null) {
+                this.gamePane.getPlateauPanel().removeAll();
+                this.gamePane.getPlateauPanel().revalidate();
+            }
+            this.getCardLayout().show(this.getJContentPane(), "0");
+            this.deconnexion.setEnabled(false);
         });
-
+        exit.addActionListener((e) -> {
+            System.exit(0);
+        });
         return menuBar;
+    }
+
+    public JMenuItem getDeconnexion() {
+        return deconnexion;
     }
 
 }

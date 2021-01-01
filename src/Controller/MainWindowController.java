@@ -4,7 +4,6 @@ import Model.Environnement.Jeu;
 import Model.Environnement.Joueur;
 import Model.Environnement.Niveau;
 import Model.Environnement.Partie;
-import Model.Environnement.Plateau;
 
 public class MainWindowController {
     private Joueur joueur;

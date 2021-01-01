@@ -62,6 +62,7 @@ public class MenuJeu extends View {
         deconnectButton.addActionListener(e -> {
             controller.setJoueur(null);
             mainWindow.getCardLayout().show(mainWindow.getJContentPane(), "0");
+            mainWindow.getDeconnexion().setEnabled(false);
         });
 
     }

@@ -26,7 +26,6 @@ public class PlateauPanel extends JPanel {
 
     public PlateauPanel(MainWindow mainWindow, MainWindowController controller) {
         super();
-
         this.controller = controller;
         this.mainWindow = mainWindow;
         chargerImage("imgs/bg.jpg");

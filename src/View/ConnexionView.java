@@ -53,6 +53,7 @@ public class ConnexionView extends View {
             Joueur joueur = Jeu.connexion(pseudoTextField.getText().trim());
             if (joueur != null) {
                 controller.setJoueur(joueur);
+                mainWindow.getDeconnexion().setEnabled(true);
                 mainWindow.getCardLayout().show(mainWindow.getJContentPane(), "3");
             } else {
                 JOptionPane.showMessageDialog(mainWindow, "Le joueur n'existe pas !!");

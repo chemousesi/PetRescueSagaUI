@@ -25,7 +25,7 @@ public class GamePane extends JPanel {
     static final int GAME_UNITS = (GAME_PANE_HEIGHT * GAME_PANE_WIDTH) / UNIT_SIZE;
     MainWindowController controller;
     MainWindow mainWindow;
-
+    private PlateauPanel plateauPanel;
     JLabel nomJoueur;
     JLabel niveauActuel;
     JLabel score;
@@ -62,8 +62,8 @@ public class GamePane extends JPanel {
         this.setBorder(new EmptyBorder(50, 50, 50, 50));
         // this.removeAll();
         // this.revalidate();
-
-        this.add(new PlateauPanel(mainWindow, controller), BorderLayout.CENTER);
+        plateauPanel = new PlateauPanel(mainWindow, controller);
+        this.add(plateauPanel, BorderLayout.CENTER);
 
         footer.removeAll();
         footer.revalidate();
@@ -136,6 +136,10 @@ public class GamePane extends JPanel {
             e.printStackTrace();
         }
 
+    }
+
+    public PlateauPanel getPlateauPanel() {
+        return plateauPanel;
     }
 
 }
