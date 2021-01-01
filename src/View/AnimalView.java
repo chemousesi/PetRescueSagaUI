@@ -17,7 +17,6 @@ public class AnimalView extends ComponentView {
     AnimalView(int l, int c, String chemin) {
         super(l, c);
         chargerImage(chemin);
-
     }
 
     public void chargerImage(String chemin) {

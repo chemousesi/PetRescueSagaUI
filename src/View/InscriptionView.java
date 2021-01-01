@@ -63,6 +63,7 @@ public class InscriptionView extends View {
                 if (Jeu.connexion(pseudo) == null) {
                     Joueur joueur = Jeu.creerJoueur(nom, pseudo);
                     controller.setJoueur(joueur);
+                    controller.jouerEnModeGraphique();
                     mainWindow.getGamePane().initialise(mainWindow, controller);
                     mainWindow.getCardLayout().show(mainWindow.getJContentPane(), "3");
                 } else {
