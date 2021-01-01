@@ -4,6 +4,8 @@ import java.awt.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
 import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
@@ -57,9 +59,14 @@ public class GamePane extends JPanel {
         this.nomJoueur.setText(this.controller.getJoueur().getnom());
         this.niveauActuel.setText(String.valueOf(this.controller.getJoueur().getniveauActuel()));
         this.setLayout(new BorderLayout());
-        // this.setBorder(new EmptyBorder(100, 100, 100, 100));
+        this.setBorder(new EmptyBorder(50, 50, 50, 50));
+        // this.removeAll();
+        // this.revalidate();
+
         this.add(new PlateauPanel(mainWindow, controller), BorderLayout.CENTER);
 
+        footer.removeAll();
+        footer.revalidate();
         setHeader();// organiser la vue du header
         setFooter();// organiser la vue du footer
 
