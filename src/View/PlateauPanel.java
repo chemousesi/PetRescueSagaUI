@@ -101,10 +101,23 @@ public class PlateauPanel extends JPanel {
                 super.mouseClicked(e);
 
                 try {
-                    PlateauPanel.this.controller.getPartie().jouerUnTour(l, c);
-                } catch (CloneNotSupportedException e1) {
-                    e1.printStackTrace();
+
+                    if (controller.getMissileActive()) {
+
+                        if (controller.getPartie().utiliserMissile(c)) {
+                        } else
+                            JOptionPane.showMessageDialog(PlateauPanel.this, "plus de missile disponible !!");
+
+                        controller.setMissileActive(false);
+
+                    } else {
+                        PlateauPanel.this.controller.getPartie().jouerUnTour(l, c);
+
+                    }
+                } catch (CloneNotSupportedException ex) {
+                    ex.printStackTrace();
                 }
+
                 PlateauPanel.this.removeAll();
                 PlateauPanel.this.revalidate();
                 PlateauPanel.this.remplireGridLayoutFromPlateau();

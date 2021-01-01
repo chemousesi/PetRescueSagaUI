@@ -167,7 +167,20 @@ public class Partie {
         this.nbPointsGangerParLeJoueur += this.niveauAJouer.getPlateau().detruire(l, c, false);
         this.niveauAJouer.getPlateau().reorganiserPlateau();
         this.nbAnimauxSauves += this.niveauAJouer.getPlateau().animalSauve();
-        System.out.println(this.nbPointsGangerParLeJoueur + " " + this.nbAnimauxSauves);
+        // System.out.println(this.nbPointsGangerParLeJoueur + " " +
+        // this.nbAnimauxSauves);
+    }
+
+    public boolean utiliserMissile(int c) throws CloneNotSupportedException {
+        if (this.niveauAJouer.getAides().missileDisponible()) {
+            this.nbPointsGangerParLeJoueur += this.niveauAJouer.getPlateau().detruireColonneParMissile(c);
+            this.niveauAJouer.getPlateau().reorganiserPlateau();
+            this.nbAnimauxSauves += this.niveauAJouer.getPlateau().animalSauve();
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     public Niveau getNiveauAJouer() {
