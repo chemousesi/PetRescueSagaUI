@@ -124,6 +124,12 @@ public class PlateauPanel extends JPanel {
                         PlateauPanel.this.revalidate();
                         PlateauPanel.this.remplireGridLayoutFromPlateau();
                         PlateauPanel.this.repaint();
+                    } else {
+                        PlateauPanel.this.removeAll();
+                        PlateauPanel.this.revalidate();
+                        PlateauPanel.this.mainWindow.getCardLayout()
+                                .show(PlateauPanel.this.mainWindow.getJContentPane(), "3");
+
                     }
                 }
             }

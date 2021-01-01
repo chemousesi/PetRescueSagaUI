@@ -48,7 +48,14 @@ public class MenuJeu extends View {
                 mainWindow.getGamePane().initialise(mainWindow, controller);
                 mainWindow.getCardLayout().show(mainWindow.getJContentPane(), "4");
             } else {
-                /// afficher des alertes ici.
+                int choix = JOptionPane.showConfirmDialog(mainWindow, "Voulez-vous recommencer ?", "Fin Du Jeu",
+                        JOptionPane.YES_NO_OPTION);
+                if (choix == JOptionPane.YES_OPTION) {
+                    this.controller.getJoueur().setniveauActuel(1);
+                    p = controller.jouerEnModeGraphique();
+                    mainWindow.getGamePane().initialise(mainWindow, controller);
+                    mainWindow.getCardLayout().show(mainWindow.getJContentPane(), "4");
+                }
             }
         });
 

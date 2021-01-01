@@ -9,6 +9,7 @@ import Model.Environnement.Plateau;
 public class MainWindowController {
     private Joueur joueur;
     private Partie partie;
+    private boolean finDuJeu = false;
 
     public MainWindowController() {
         super();
@@ -26,7 +27,10 @@ public class MainWindowController {
     public Partie jouerEnModeGraphique() {
         try {
             partie = Jeu.lancerPartie(joueur);
-            partie.setNiveauAJouer((Niveau) Jeu.getNiveau(joueur.getniveauActuel() - 1).clone());
+            if (partie != null)
+                partie.setNiveauAJouer((Niveau) Jeu.getNiveau(joueur.getniveauActuel() - 1).clone());
+            else
+                finDuJeu = true;
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
