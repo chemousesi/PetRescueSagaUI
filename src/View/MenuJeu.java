@@ -59,6 +59,10 @@ public class MenuJeu extends View {
             }
         });
 
+        helpButton.addActionListener(e -> {
+            mainWindow.getCardLayout().show(mainWindow.getJContentPane(), "5");
+        });
+
         deconnectButton.addActionListener(e -> {
             controller.setJoueur(null);
             mainWindow.getCardLayout().show(mainWindow.getJContentPane(), "0");

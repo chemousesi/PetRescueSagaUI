@@ -21,6 +21,7 @@ public class MainWindow extends JFrame {
     private MenuJeu menuJeu = new MenuJeu(this, controller);
     private CardLayout cl = new CardLayout();
     private GamePane gamePane = new GamePane();
+    private AidePanel aidePanel = new AidePanel(this, controller);
 
     private JMenuItem deconnexion = new JMenuItem("Deconnexion");
     private JMenuItem exit = new JMenuItem("Quitter");
@@ -44,6 +45,7 @@ public class MainWindow extends JFrame {
         jContentPane.add(connexionView, "1");
         jContentPane.add(menuJeu, "3");
         jContentPane.add(gamePane, "4");
+        jContentPane.add(aidePanel, "5");
 
         cl.show(jContentPane, "0");
         this.add(jContentPane);
