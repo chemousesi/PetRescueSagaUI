@@ -26,8 +26,7 @@ public class PlateauPanel extends JPanel {
 
     public PlateauPanel(MainWindow mainWindow, MainWindowController controller) {
         super();
-        this.removeAll();
-        this.revalidate();
+
         this.controller = controller;
         this.mainWindow = mainWindow;
         chargerImage("imgs/bg.jpg");
@@ -36,6 +35,7 @@ public class PlateauPanel extends JPanel {
         this.colonnes = this.controller.getPartie().getNiveauAJouer().getPlateau().colonnes - 2;
         GridLayout gridLayout = new GridLayout(lignes, colonnes);
         this.remplireGridLayoutFromPlateau();
+        this.repaint();
         gridLayout.setHgap(0);
         gridLayout.preferredLayoutSize(this);
         this.setLayout(gridLayout);
@@ -46,7 +46,7 @@ public class PlateauPanel extends JPanel {
             for (int j = 1; j <= colonnes; j++) {
                 Case temp = this.controller.getPartie().getNiveauAJouer().getPlateau().getCase(i, j);
                 if (temp.estVide()) {
-                    this.add(new ObstacleView(i, j));
+                    this.add(new EmptyBlockView(i, j));
                 } else {
                     if (!temp.estUnAnimal()) {
                         if (temp.getElement().estMobile())
@@ -63,7 +63,6 @@ public class PlateauPanel extends JPanel {
             }
 
         }
-        revalidate();
     }
 
     public int getColonnes() {
@@ -106,22 +105,36 @@ public class PlateauPanel extends JPanel {
                 } catch (CloneNotSupportedException e1) {
                     e1.printStackTrace();
                 }
-
                 PlateauPanel.this.removeAll();
-                PlateauPanel.this.remplireGridLayoutFromPlateau();
                 PlateauPanel.this.revalidate();
+                PlateauPanel.this.remplireGridLayoutFromPlateau();
+                PlateauPanel.this.repaint();
                 if (PlateauPanel.this.controller.getPartie().estGagne()) {
+                    PlateauPanel.this.removeAll();
+                    PlateauPanel.this.revalidate();
                     PlateauPanel.this.controller.getPartie().passerNiveauSuivant();
                     JOptionPane.showMessageDialog(PlateauPanel.this, "La partie est gagné !!");
                     PlateauPanel.this.mainWindow.getCardLayout().show(PlateauPanel.this.mainWindow.getJContentPane(),
                             "3");
                 } else if (PlateauPanel.this.controller.getPartie().estPerdue()) {
-                    /// affichage d'une alerte
+                    int choix = JOptionPane.showConfirmDialog(PlateauPanel.this.mainWindow.getJContentPane(),
+                            "Voulez-vous réessayer ?", "", JOptionPane.YES_NO_OPTION);
+                    if (choix == JOptionPane.YES_OPTION) {
+                        PlateauPanel.this.controller.jouerEnModeGraphique();
+                        PlateauPanel.this.removeAll();
+                        PlateauPanel.this.revalidate();
+                        PlateauPanel.this.remplireGridLayoutFromPlateau();
+                        PlateauPanel.this.repaint();
+                    } else {
+                        PlateauPanel.this.removeAll();
+                        PlateauPanel.this.revalidate();
+                        PlateauPanel.this.mainWindow.getCardLayout()
+                                .show(PlateauPanel.this.mainWindow.getJContentPane(), "3");
+
+                    }
                 }
             }
-
         }
-
     }
 
     public void chargerImage(String chemin) {

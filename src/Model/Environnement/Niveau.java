@@ -2,7 +2,7 @@ package Model.Environnement;
 
 import java.io.Serializable;
 
-public class Niveau implements Serializable {
+public class Niveau implements Serializable, Cloneable {
     /**
      *
      */
@@ -30,6 +30,10 @@ public class Niveau implements Serializable {
         System.out.println("\t\t\t ##############################################");
     }
 
+    public void setPlateau(Plateau plateau) {
+        this.plateau = plateau;
+    }
+
     public Conditions getConditionsDeGagner() {
         return conditionsDeGagner;
     }
@@ -44,5 +48,11 @@ public class Niveau implements Serializable {
 
     public Plateau getPlateau() {
         return plateau;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        // TODO Auto-generated method stub
+        return new Niveau(numero, (Plateau) plateau.clone(), conditionsDeGagner, aides);
     }
 }

@@ -2,7 +2,9 @@ package Controller;
 
 import Model.Environnement.Jeu;
 import Model.Environnement.Joueur;
+import Model.Environnement.Niveau;
 import Model.Environnement.Partie;
+import Model.Environnement.Plateau;
 
 public class MainWindowController {
     private Joueur joueur;
@@ -10,6 +12,7 @@ public class MainWindowController {
     private boolean missileActive = false;
     private boolean bombActive = false;
     private boolean indiceActive = false;
+    private boolean finDuJeu = false;
 
     public MainWindowController() {
         super();
@@ -25,7 +28,15 @@ public class MainWindowController {
     }
 
     public Partie jouerEnModeGraphique() {
-        partie = Jeu.lancerPartie(joueur);
+        try {
+            partie = Jeu.lancerPartie(joueur);
+            if (partie != null)
+                partie.setNiveauAJouer((Niveau) Jeu.getNiveau(joueur.getniveauActuel() - 1).clone());
+            else
+                finDuJeu = true;
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
         return partie;
     }
 

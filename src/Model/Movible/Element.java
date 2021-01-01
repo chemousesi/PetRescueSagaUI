@@ -12,4 +12,10 @@ public abstract class Element implements Serializable, Cloneable {
         return true;
     }
 
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        // TODO Auto-generated method stub
+        return super.clone();
+    }
+
 }

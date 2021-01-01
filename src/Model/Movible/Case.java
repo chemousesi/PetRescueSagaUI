@@ -70,6 +70,6 @@ public class Case implements Serializable, Cloneable {
     @Override
     public Object clone() throws CloneNotSupportedException {
 
-        return super.clone();
+        return new Case(this.element == null ? null : (Element) this.element.clone(), active);
     }
 }

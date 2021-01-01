@@ -23,4 +23,9 @@ public class Brique extends Element {
     public String toString() {
         return couleur.toString();
     }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 }

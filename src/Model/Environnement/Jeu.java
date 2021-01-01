@@ -269,6 +269,9 @@ public class Jeu {
                 return true;
         }
         return false;
+    }
 
+    public static Niveau getNiveau(int niv) {
+        return niveau[niv];
     }
 }

@@ -4,7 +4,6 @@ import java.awt.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
@@ -25,9 +24,9 @@ public class GamePane extends JPanel {
     MainWindowController controller;
     MainWindow mainWindow;
 
-    JLabel nomJoueur = new JLabel("nomJoueur");
-    JLabel niveauActuel = new JLabel("niveau 1");
-    JLabel score = new JLabel("Score : 0");
+    JLabel nomJoueur;
+    JLabel niveauActuel;
+    JLabel score;
     // JPanel plateau = new JPanel();
     JPanel header = new JPanel();
     JPanel footer = new JPanel();
@@ -40,23 +39,25 @@ public class GamePane extends JPanel {
         chargerImage("imgs/bg_min.jpg");
         chargerIcons();
 
+        this.nomJoueur = new JLabel(new ImageIcon("imgs/gamer.png"));
+        this.niveauActuel = new JLabel(new ImageIcon("imgs/level.png"));
+        this.score = new JLabel(new ImageIcon("imgs/star.png"));
     }
 
     @Override
     protected void paintComponent(Graphics g) {
-        // TODO Auto-generated method stub
         super.paintComponent(g);
         g.drawImage(image, 0, 0, null);
+        this.score.setText(String.valueOf(this.controller.getPartie().getNbPointsGangerParLeJoueur()));
     }
 
     public void initialise(MainWindow mainWindow, MainWindowController controller) {
         this.mainWindow = mainWindow;
         this.controller = controller;
-
+        this.nomJoueur.setText(this.controller.getJoueur().getnom());
+        this.niveauActuel.setText(String.valueOf(this.controller.getJoueur().getniveauActuel()));
         this.setLayout(new BorderLayout());
-
         // this.setBorder(new EmptyBorder(100, 100, 100, 100));
-
         this.add(new PlateauPanel(mainWindow, controller), BorderLayout.CENTER);
 
         setHeader();// organiser la vue du header
@@ -66,11 +67,9 @@ public class GamePane extends JPanel {
 
         this.add(header, BorderLayout.NORTH);
         this.add(footer, BorderLayout.SOUTH);
-
     }
 
     public void chargerImage(String chemin) {
-
         try {
             image = ImageIO.read(new File(chemin));
         } catch (IOException e) {
@@ -114,6 +113,8 @@ public class GamePane extends JPanel {
         header.setBackground(Color.GREEN);
         header.add(nomJoueur, BorderLayout.WEST);
         header.add(score, BorderLayout.EAST);
+
+        header.add(niveauActuel);
 
     }
 

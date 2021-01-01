@@ -174,4 +174,16 @@ public class Partie {
         return niveauAJouer;
     }
 
+    public int getNbPointsGangerParLeJoueur() {
+        return nbPointsGangerParLeJoueur;
+    }
+
+    public int getNbAnimauxSauves() {
+        return nbAnimauxSauves;
+    }
+
+    public void setNiveauAJouer(Niveau niveauAJouer) {
+        this.niveauAJouer = niveauAJouer;
+    }
+
 }
