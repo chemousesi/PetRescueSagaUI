@@ -102,14 +102,17 @@ public class PlateauPanel extends JPanel {
                 try {
 
                     if (controller.getMissileActive()) {
-
-                        if (controller.getPartie().utiliserMissile(c)) {
-                        } else
+                        // voir si on veut utiliser un missile
+                        if (!controller.getPartie().utiliserMissile(c)/* ici on fait le test */)
                             JOptionPane.showMessageDialog(PlateauPanel.this, "plus de missile disponible !!");
 
                         controller.setMissileActive(false);
 
-                    } else {
+                    } else if (controller.getBombActive()) {
+
+                    }
+
+                    else {
                         PlateauPanel.this.controller.getPartie().jouerUnTour(l, c);
 
                     }

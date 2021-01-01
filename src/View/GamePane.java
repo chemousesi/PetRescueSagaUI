@@ -26,6 +26,7 @@ public class GamePane extends JPanel {
     MainWindowController controller;
     MainWindow mainWindow;
     private PlateauPanel plateauPanel;
+
     JLabel nomJoueur;
     JLabel niveauActuel;
     JLabel score;
@@ -64,7 +65,6 @@ public class GamePane extends JPanel {
         // this.revalidate();
         plateauPanel = new PlateauPanel(mainWindow, controller);
         this.add(plateauPanel, BorderLayout.CENTER);
-
         footer.removeAll();
         footer.revalidate();
         setHeader();// organiser la vue du header
@@ -121,7 +121,6 @@ public class GamePane extends JPanel {
         header.setBackground(Color.GREEN);
         header.add(nomJoueur, BorderLayout.WEST);
         header.add(score, BorderLayout.EAST);
-
         header.add(niveauActuel);
 
     }
@@ -141,5 +140,4 @@ public class GamePane extends JPanel {
     public PlateauPanel getPlateauPanel() {
         return plateauPanel;
     }
-
 }

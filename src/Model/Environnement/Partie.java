@@ -172,6 +172,9 @@ public class Partie {
     }
 
     public boolean utiliserMissile(int c) throws CloneNotSupportedException {
+        // retourne true si il y'a des missile et leur utilisation se fait avec succès,
+        // false s'il en reste plus
+
         if (this.niveauAJouer.getAides().missileDisponible()) {
             this.nbPointsGangerParLeJoueur += this.niveauAJouer.getPlateau().detruireColonneParMissile(c);
             this.niveauAJouer.getPlateau().reorganiserPlateau();
