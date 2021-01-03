@@ -1,6 +1,13 @@
 package Model.Environnement;
 
-public class ElementHistorique {
+import java.io.Serializable;
+
+public class ElementHistorique implements Serializable {
+
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     private int niveau;
     private int scoreGagneDansLeNiveau;
 
