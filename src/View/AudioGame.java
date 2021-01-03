@@ -6,10 +6,12 @@ import java.net.URL;
 public class AudioGame {
     private Clip clip;
     private Clip destructionClip;
+    private Clip gagnerClip;
+    private Clip perdreClip;
 
     public void lanceMusique() {
         try {
-            URL url = getClass().getResource("petMusique.wav");
+            URL url = getClass().getResource("petMusiqueMin.wav");
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(url);
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
@@ -21,26 +23,31 @@ public class AudioGame {
 
     }
 
-    public void lanceDestructionSound() {
+    private void lancerSound(Clip c, String chemin) {
         try {
-            URL url = getClass().getResource("paf.wav");
+            URL url = getClass().getResource(chemin);
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(url);
-            destructionClip = AudioSystem.getClip();
-            destructionClip.open(audioInputStream);
-            destructionClip.loop(Clip.LOOP_CONTINUOUSLY);
-            destructionClip.start();
+            c = AudioSystem.getClip();
+            c.open(audioInputStream);
+
+            c.start();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
 
     }
 
-    public void stopMusique() {
-        clip.close();
+    public void lanceDestructionSound() {
+        lancerSound(destructionClip, "paf2.wav");
+
     }
 
-    public void stopDestructionSound() {
-        destructionClip.close();
+    public void lanceGangnerSound() {
+        lancerSound(gagnerClip, "gagner.wav");
+    }
+
+    public void stopMusique() {
+        clip.close();
     }
 
     public boolean musiqueEnMarche() {

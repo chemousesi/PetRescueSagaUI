@@ -141,6 +141,7 @@ public class PlateauPanel extends JPanel {
                 PlateauPanel.this.remplireGridLayoutFromPlateau();
                 PlateauPanel.this.repaint();
                 if (PlateauPanel.this.controller.getPartie().estGagne()) {
+                    PlateauPanel.this.controller.getAudioGame().lanceGangnerSound();
                     PlateauPanel.this.removeAll();
                     PlateauPanel.this.revalidate();
                     PlateauPanel.this.controller.getPartie().passerNiveauSuivant();
