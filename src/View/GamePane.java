@@ -91,7 +91,8 @@ public class GamePane extends JPanel {
         footer.setLayout(new FlowLayout());
         footer.setOpaque(false);
 
-        JButton missileButton = new JButton(missileImage);
+        JButton missileButton = new JButton(
+                String.valueOf(controller.getPartie().getNiveauAJouer().getAides().getNbMissiles()), missileImage);
         JButton bombButton = new JButton(bmbImage);
         JButton indiceButton = new JButton(indiceImage);
 

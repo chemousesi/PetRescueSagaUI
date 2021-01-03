@@ -1,6 +1,8 @@
 package View;
 
 import java.awt.Color;
+
+import java.awt.*;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
@@ -13,6 +15,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.*;
 
 import Controller.MainWindowController;
 import Model.Movible.Case;
@@ -88,10 +91,13 @@ public class PlateauPanel extends JPanel {
         private static final long serialVersionUID = 1L;
 
         private Color color;
+        private Rectangle rect;
 
         public BriqueView(int i, int j, Color c) {
             super(i, j);
             this.color = c;
+            // rect = new Rectangle(10, 10, getWidth() - 20, getHeight() - 20);
+
             this.addMouseListener(new MyMouseAdapter());
         }
 
@@ -99,7 +105,8 @@ public class PlateauPanel extends JPanel {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             g.setColor(color);
-            g.fillRect(10, 10, getWidth() - 10, getHeight() - 10);
+            g.fillRect(10, 10, getWidth() - 20, getHeight() - 20);
+            // g.fillRect(rect.x, rect.y, (int) rect.getWidth(), (int) rect.getHeight());
 
         }
 
@@ -167,6 +174,23 @@ public class PlateauPanel extends JPanel {
 
                     }
                 }
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                // rect.setSize((int) rect.getWidth() - 10, (int) rect.getHeight() - 10);
+                // BriqueView.this.setBounds(15, 15, getWidth() - 30, getHeight() - 30);
+                BriqueView.this.setSize(getWidth() - 5, getHeight() - 5);
+                repaint();
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                // rect.setSize((int) rect.getWidth() + 10, (int) rect.getHeight() + 10);
+                BriqueView.this.setSize(getWidth() + 5, getHeight() + 5);
+                repaint();
             }
 
         }
