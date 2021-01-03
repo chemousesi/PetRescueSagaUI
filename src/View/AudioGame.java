@@ -27,7 +27,6 @@ public class AudioGame {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(url);
             destructionClip = AudioSystem.getClip();
             destructionClip.open(audioInputStream);
-            destructionClip.loop(Clip.LOOP_CONTINUOUSLY);
             destructionClip.start();
         } catch (Exception ex) {
             ex.printStackTrace();

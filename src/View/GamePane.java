@@ -10,6 +10,7 @@ import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.awt.*;
 
 import Controller.MainWindowController;
 
@@ -31,7 +32,9 @@ public class GamePane extends JPanel {
     JLabel nomJoueur;
     JLabel niveauActuel;
     JLabel score;
-    // JPanel plateau = new JPanel();
+    JLabel conditionsPoints;
+    JLabel conditionsAnimal;
+
     JPanel header = new JPanel();
     JPanel footer = new JPanel();
 
@@ -46,6 +49,8 @@ public class GamePane extends JPanel {
         this.nomJoueur = new JLabel(new ImageIcon("imgs/gamer.png"));
         this.niveauActuel = new JLabel(new ImageIcon("imgs/level.png"));
         this.score = new JLabel(new ImageIcon("imgs/star.png"));
+        this.conditionsPoints = new JLabel(new ImageIcon("imgs/paper.png"));
+        this.conditionsAnimal = new JLabel(new ImageIcon("imgs/pet.png"));
     }
 
     @Override
@@ -60,10 +65,12 @@ public class GamePane extends JPanel {
         this.controller = controller;
         this.nomJoueur.setText(this.controller.getJoueur().getnom());
         this.niveauActuel.setText(String.valueOf(this.controller.getJoueur().getniveauActuel()));
+        this.conditionsPoints.setText(String
+                .valueOf(this.controller.getPartie().getNiveauAJouer().getConditionsDeGagner().getNbPointsAGagner()));
+        this.conditionsAnimal.setText(String
+                .valueOf(this.controller.getPartie().getNiveauAJouer().getConditionsDeGagner().getNbAnimauxASauver()));
         this.setLayout(new BorderLayout());
         this.setBorder(new EmptyBorder(50, 50, 50, 50));
-        // this.removeAll();
-        // this.revalidate();
         plateauPanel = new PlateauPanel(mainWindow, controller);
         this.add(plateauPanel, BorderLayout.CENTER);
         footer.removeAll();
@@ -133,10 +140,12 @@ public class GamePane extends JPanel {
 
     public void setHeader() {
         header.setBackground(Color.GREEN);
-        header.add(nomJoueur, BorderLayout.WEST);
-        header.add(score, BorderLayout.EAST);
+        header.add(nomJoueur);
+        header.add(score);
         header.add(niveauActuel);
-
+        header.add(Box.createRigidArea(new Dimension(30, 0)));
+        header.add(conditionsPoints);
+        header.add(conditionsAnimal);
     }
 
     public void chargerIcons() {
