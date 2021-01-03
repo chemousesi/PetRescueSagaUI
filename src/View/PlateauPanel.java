@@ -108,6 +108,7 @@ public class PlateauPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                PlateauPanel.this.controller.getAudioGame().lanceDestructionSound();
 
                 try {
 

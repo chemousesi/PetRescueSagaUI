@@ -31,6 +31,7 @@ public class MainWindow extends JFrame {
         super();
         this.setTitle("Pet Rescue Saga");
         this.setSize(700, 700);
+        this.setResizable(false);
 
         jContentPane.setLayout(cl);
         initialize();
@@ -141,6 +142,25 @@ public class MainWindow extends JFrame {
         jeuMenu.add(exit);
 
         jeuMenu.addSeparator();
+
+        JMenu sonMenu = new JMenu("Son");
+        menuBar.add(sonMenu);
+        JMenuItem arretSon = new JMenuItem("Arrêter son");
+        sonMenu.add(arretSon);
+
+        JMenuItem mettreSon = new JMenuItem("Mettre son");
+        sonMenu.add(mettreSon);
+
+        mettreSon.addActionListener(e -> {
+            if (!this.controller.getAudioGame().musiqueEnMarche())
+                this.controller.getAudioGame().lanceMusique();
+        });
+
+        arretSon.addActionListener(e -> {
+            if (this.controller.getAudioGame().musiqueEnMarche())
+                this.controller.getAudioGame().stopMusique();
+
+        });
 
         deconnexion.addActionListener((e) -> {
             controller.setJoueur(null);
