@@ -11,7 +11,6 @@ public class MainWindowController {
     private Partie partie;
     private boolean missileActive = false;
     private boolean bombActive = false;
-    private boolean indiceActive = false;
     private boolean finDuJeu = false;
     private AudioGame audioGame = new AudioGame();
 
@@ -61,15 +60,4 @@ public class MainWindowController {
         return bombActive;
     }
 
-    public void setIndiceActive(boolean indice) {
-        this.indiceActive = indice;
-    }
-
-    public boolean getIndiceActive() {
-        return indiceActive;
-    }
-
-    public AudioGame getAudioGame() {
-        return audioGame;
-    }
 }

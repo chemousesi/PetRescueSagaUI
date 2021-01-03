@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import Controller.MainWindowController;
 
@@ -112,7 +113,25 @@ public class GamePane extends JPanel {
         });
 
         indiceButton.addActionListener(e -> {
-            controller.setIndiceActive(true);
+
+            if (controller.getPartie().getNiveauAJouer().getAides().indiceDisponible()) {
+
+                ArrayList<Integer> indiceArrayList;
+                try {
+                    indiceArrayList = controller.getPartie().utiliserIndice();
+                    JOptionPane.showMessageDialog(this, "*** la meilleure case à detruire est : ligne : "
+                            + indiceArrayList.get(0) + " : colonne :" + indiceArrayList.get(1) + "  ***");
+
+                } catch (CloneNotSupportedException e1) {
+
+                    e1.printStackTrace();
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Plus d'indice disponible !! ");
+
+            }
+
         });
 
     }

@@ -1,16 +1,21 @@
 package View;
 
-import Controller.MainWindowController;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import javax.imageio.ImageIO;
-import java.awt.image.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
+
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+import Controller.MainWindowController;
 import Model.Movible.Case;
-import java.util.concurrent.TimeUnit;
 
 public class PlateauPanel extends JPanel {
 
@@ -24,12 +29,15 @@ public class PlateauPanel extends JPanel {
     private MainWindow mainWindow;
     private BufferedImage image;
 
+    // audio part
+
     public PlateauPanel(MainWindow mainWindow, MainWindowController controller) {
         super();
         this.controller = controller;
         this.mainWindow = mainWindow;
         chargerImage("imgs/bg.jpg");
-        this.setOpaque(false);
+        this.setBackground(new Color(0, 0, 0, 80));
+        // this.setOpaque(false);
         this.lignes = this.controller.getPartie().getNiveauAJouer().getPlateau().lignes - 2;
         this.colonnes = this.controller.getPartie().getNiveauAJouer().getPlateau().colonnes - 2;
         GridLayout gridLayout = new GridLayout(lignes, colonnes);
@@ -38,6 +46,7 @@ public class PlateauPanel extends JPanel {
         gridLayout.setHgap(0);
         gridLayout.preferredLayoutSize(this);
         this.setLayout(gridLayout);
+
     }
 
     private void remplireGridLayoutFromPlateau() {
@@ -95,11 +104,17 @@ public class PlateauPanel extends JPanel {
         }
 
         class MyMouseAdapter extends MouseAdapter {
+
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
 
                 try {
+
+                    if (!controller.getBombActive() && !controller.getMissileActive()) {
+                        PlateauPanel.this.controller.getPartie().jouerUnTour(l, c);
+
+                    }
 
                     if (controller.getMissileActive()) {
                         // voir si on veut utiliser un missile
@@ -108,14 +123,14 @@ public class PlateauPanel extends JPanel {
 
                         controller.setMissileActive(false);
 
-                    } else if (controller.getBombActive()) {
-
+                    }
+                    if (controller.getBombActive()) {
+                        if (!controller.getPartie().utiliserBomb(l, c)) {
+                            JOptionPane.showMessageDialog(PlateauPanel.this, "Plus de Bombe disponible !! ");
+                        }
+                        controller.setBombActive(false);
                     }
 
-                    else {
-                        PlateauPanel.this.controller.getPartie().jouerUnTour(l, c);
-
-                    }
                 } catch (CloneNotSupportedException ex) {
                     ex.printStackTrace();
                 }
@@ -149,6 +164,7 @@ public class PlateauPanel extends JPanel {
                     }
                 }
             }
+
         }
     }
 

@@ -66,6 +66,7 @@ public class MenuJeu extends View {
             mainWindow.getHistoriqueView().initialise();
             mainWindow.getCardLayout().show(mainWindow.getJContentPane(), "6");
         });
+
         deconnectButton.addActionListener(e -> {
             controller.setJoueur(null);
             mainWindow.getCardLayout().show(mainWindow.getJContentPane(), "0");
