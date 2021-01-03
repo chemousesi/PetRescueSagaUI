@@ -148,6 +148,7 @@ public class MainWindow extends JFrame {
                 this.gamePane.getPlateauPanel().removeAll();
                 this.gamePane.getPlateauPanel().revalidate();
             }
+            this.controller.getAudioGame().stopMusique();
             this.getCardLayout().show(this.getJContentPane(), "0");
             this.deconnexion.setEnabled(false);
         });

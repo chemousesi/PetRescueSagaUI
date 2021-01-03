@@ -70,6 +70,7 @@ public class MenuJeu extends View {
             controller.setJoueur(null);
             mainWindow.getCardLayout().show(mainWindow.getJContentPane(), "0");
             mainWindow.getDeconnexion().setEnabled(false);
+            this.controller.getAudioGame().stopMusique();
         });
 
     }

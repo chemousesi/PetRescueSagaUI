@@ -4,6 +4,7 @@ import Model.Environnement.Jeu;
 import Model.Environnement.Joueur;
 import Model.Environnement.Niveau;
 import Model.Environnement.Partie;
+import View.AudioGame;
 
 public class MainWindowController {
     private Joueur joueur;
@@ -12,6 +13,7 @@ public class MainWindowController {
     private boolean bombActive = false;
     private boolean indiceActive = false;
     private boolean finDuJeu = false;
+    private AudioGame audioGame = new AudioGame();
 
     public MainWindowController() {
         super();
@@ -65,5 +67,9 @@ public class MainWindowController {
 
     public boolean getIndiceActive() {
         return indiceActive;
+    }
+
+    public AudioGame getAudioGame() {
+        return audioGame;
     }
 }
