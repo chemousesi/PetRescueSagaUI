@@ -36,8 +36,8 @@ public class PlateauPanel extends JPanel {
         this.controller = controller;
         this.mainWindow = mainWindow;
         chargerImage("imgs/bg.jpg");
-        this.setBackground(new Color(0, 0, 0, 80));
-        // this.setOpaque(false);
+        // this.setBackground(new Color(0, 0, 0, 80));
+        this.setOpaque(false);
         this.lignes = this.controller.getPartie().getNiveauAJouer().getPlateau().lignes - 2;
         this.colonnes = this.controller.getPartie().getNiveauAJouer().getPlateau().colonnes - 2;
         GridLayout gridLayout = new GridLayout(lignes, colonnes);

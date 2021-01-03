@@ -60,4 +60,8 @@ public class MainWindowController {
         return bombActive;
     }
 
+    public AudioGame getAudioGame() {
+        return audioGame;
+    }
+
 }

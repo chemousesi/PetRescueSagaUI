@@ -95,16 +95,11 @@ public class GamePane extends JPanel {
         JButton bombButton = new JButton(bmbImage);
         JButton indiceButton = new JButton(indiceImage);
 
-        missileButton.setOpaque(false);
-        bombButton.setOpaque(false);
-        bombButton.setOpaque(false);
-
         footer.add(missileButton);
         footer.add(bombButton);
         footer.add(indiceButton);
 
         missileButton.addActionListener(e -> {
-            System.out.println("missile button");
             controller.setMissileActive(true);
 
         });
