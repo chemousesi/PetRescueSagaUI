@@ -22,6 +22,7 @@ public class MainWindow extends JFrame {
     private CardLayout cl = new CardLayout();
     private GamePane gamePane = new GamePane();
     private AidePanel aidePanel = new AidePanel(this, controller);
+    private HistoriqueView historiqueView = new HistoriqueView(this, controller);
 
     private JMenuItem deconnexion = new JMenuItem("Deconnexion");
     private JMenuItem exit = new JMenuItem("Quitter");
@@ -46,6 +47,7 @@ public class MainWindow extends JFrame {
         jContentPane.add(menuJeu, "3");
         jContentPane.add(gamePane, "4");
         jContentPane.add(aidePanel, "5");
+        jContentPane.add(historiqueView, "6");
 
         cl.show(jContentPane, "0");
         this.add(jContentPane);
@@ -123,22 +125,16 @@ public class MainWindow extends JFrame {
 
     JMenuBar createJMenuBar() {
         JMenuBar menuBar = new JMenuBar();
-
         JLabel joueurActuel = new JLabel();
-
         ImageIcon imageIcon = new ImageIcon("imgs/dog.png");
         // Icon icon = new ImageIcon("boy.png");
-
         joueurActuel.setIcon(imageIcon);
         joueurActuel.setPreferredSize(new Dimension(100, 30));
         joueurActuel.setAlignmentX(RIGHT_ALIGNMENT);
-
         menuBar.add(joueurActuel);
-
         // menuBar.setPreferredSize(new DimensionUIResource(this.getWidth(), 20));
         JMenu jeuMenu = new JMenu("Jeu");
         menuBar.add(jeuMenu);
-
         deconnexion.setEnabled(false);
         jeuMenu.add(deconnexion);
 
@@ -163,6 +159,10 @@ public class MainWindow extends JFrame {
 
     public JMenuItem getDeconnexion() {
         return deconnexion;
+    }
+
+    public HistoriqueView getHistoriqueView() {
+        return historiqueView;
     }
 
 }
