@@ -149,6 +149,8 @@ public class PlateauPanel extends JPanel {
                     PlateauPanel.this.mainWindow.getCardLayout().show(PlateauPanel.this.mainWindow.getJContentPane(),
                             "3");
                 } else if (PlateauPanel.this.controller.getPartie().estPerdue()) {
+                    PlateauPanel.this.controller.getAudioGame().lancePerdreSound();
+
                     int choix = JOptionPane.showConfirmDialog(PlateauPanel.this.mainWindow.getJContentPane(),
                             "Voulez-vous réessayer ?", "", JOptionPane.YES_NO_OPTION);
                     if (choix == JOptionPane.YES_OPTION) {

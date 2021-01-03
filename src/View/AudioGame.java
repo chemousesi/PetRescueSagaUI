@@ -1,18 +1,18 @@
 package View;
 
 import javax.sound.sampled.*;
+
+import java.io.File;
 import java.net.URL;
 
 public class AudioGame {
     private Clip clip;
-    private Clip destructionClip;
-    private Clip gagnerClip;
-    private Clip perdreClip;
+    private Clip tempClip;
 
     public void lanceMusique() {
         try {
-            URL url = getClass().getResource("petMusiqueMin.wav");
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(url);
+
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("sounds/petMusiqueMin.wav"));
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             clip.loop(Clip.LOOP_CONTINUOUSLY);
@@ -23,14 +23,13 @@ public class AudioGame {
 
     }
 
-    private void lancerSound(Clip c, String chemin) {
+    private void lancerSound(String chemin) {
         try {
-            URL url = getClass().getResource(chemin);
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(url);
-            c = AudioSystem.getClip();
-            c.open(audioInputStream);
 
-            c.start();
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(chemin));
+            tempClip = AudioSystem.getClip();
+            tempClip.open(audioInputStream);
+            tempClip.start();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -38,12 +37,16 @@ public class AudioGame {
     }
 
     public void lanceDestructionSound() {
-        lancerSound(destructionClip, "paf2.wav");
+        lancerSound("sounds/paf2.wav");
 
     }
 
     public void lanceGangnerSound() {
-        lancerSound(gagnerClip, "gagner.wav");
+        lancerSound("sounds/gagner.wav");
+    }
+
+    public void lancePerdreSound() {
+        lancerSound("sounds/perdre.wav");
     }
 
     public void stopMusique() {
