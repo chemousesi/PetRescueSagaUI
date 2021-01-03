@@ -59,10 +59,18 @@ public class MenuJeu extends View {
             }
         });
 
+        helpButton.addActionListener(e -> {
+            mainWindow.getCardLayout().show(mainWindow.getJContentPane(), "5");
+        });
+        historiqueButton.addActionListener((e) -> {
+            mainWindow.getHistoriqueView().initialise();
+            mainWindow.getCardLayout().show(mainWindow.getJContentPane(), "6");
+        });
         deconnectButton.addActionListener(e -> {
             controller.setJoueur(null);
             mainWindow.getCardLayout().show(mainWindow.getJContentPane(), "0");
             mainWindow.getDeconnexion().setEnabled(false);
+            this.controller.getAudioGame().stopMusique();
         });
 
     }

@@ -62,6 +62,7 @@ public class InscriptionView extends View {
             if (!nom.isEmpty() && !pseudo.isEmpty()) {
                 if (Jeu.connexion(pseudo) == null) {
                     Joueur joueur = Jeu.creerJoueur(nom, pseudo);
+                    this.controller.getAudioGame().lanceMusique();
                     controller.setJoueur(joueur);
                     Jeu.sauvegarderJoueurs();
                     mainWindow.getDeconnexion().setEnabled(true);

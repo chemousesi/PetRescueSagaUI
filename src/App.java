@@ -9,13 +9,11 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         UIManager.setLookAndFeel(new NimbusLookAndFeel());
-
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.setVisible(true);
-
             }
         });
 

@@ -52,6 +52,7 @@ public class ConnexionView extends View {
         connectButton.addActionListener(e -> {
             Joueur joueur = Jeu.connexion(pseudoTextField.getText().trim());
             if (joueur != null) {
+                this.controller.getAudioGame().lanceMusique();
                 controller.setJoueur(joueur);
                 mainWindow.getDeconnexion().setEnabled(true);
                 mainWindow.getCardLayout().show(mainWindow.getJContentPane(), "3");

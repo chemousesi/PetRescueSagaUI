@@ -75,4 +75,8 @@ public class Joueur implements Serializable {
         return "Nom : " + this.nom + "\nNiveau Actuel : " + this.niveauActuel + "\nScore : " + this.score;
     }
 
+    public LinkedList<ElementHistorique> getHistorique() {
+        return historique;
+    }
+
 }
