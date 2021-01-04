@@ -177,6 +177,7 @@ public class Partie {
 
         if (this.niveauAJouer.getAides().missileDisponible()) {
             this.nbPointsGangerParLeJoueur += this.niveauAJouer.getPlateau().detruireColonneParMissile(c);
+            this.niveauAJouer.getAides().enleverMissile();
             this.niveauAJouer.getPlateau().reorganiserPlateau();
             this.nbAnimauxSauves += this.niveauAJouer.getPlateau().animalSauve();
             return true;
@@ -192,6 +193,7 @@ public class Partie {
 
         if (this.niveauAJouer.getAides().bombesDisponible()) {
             this.nbPointsGangerParLeJoueur += this.niveauAJouer.getPlateau().detruireCasesParBombe(l, c);
+            this.niveauAJouer.getAides().enleverBombe();
             this.niveauAJouer.getPlateau().reorganiserPlateau();
             this.nbAnimauxSauves += this.niveauAJouer.getPlateau().animalSauve();
             return true;

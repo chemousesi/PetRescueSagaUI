@@ -2,7 +2,7 @@ package Model.Environnement;
 
 import java.io.Serializable;
 
-public class Conditions implements Serializable {
+public class Conditions implements Serializable, Cloneable {
     /**
      *
      */
@@ -21,5 +21,11 @@ public class Conditions implements Serializable {
 
     public int getNbPointsAGagner() {
         return nbPointsAGagner;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        // TODO Auto-generated method stub
+        return super.clone();
     }
 }

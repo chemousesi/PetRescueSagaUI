@@ -63,4 +63,8 @@ public class Aide implements Serializable { /// pour identifier les aides qu'un 
         }
         return false;
     }
+
+    public boolean pasDeBombesEtDeMissilesDisponibles() {
+        return missileDisponible() && bombesDisponible();
+    }
 }
