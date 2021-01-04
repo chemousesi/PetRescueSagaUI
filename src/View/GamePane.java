@@ -20,10 +20,7 @@ public class GamePane extends JPanel {
      */
 
     private static final long serialVersionUID = 1L;
-    static final int GAME_PANE_HEIGHT = 300;
-    static final int GAME_PANE_WIDTH = 300;
-    static final int UNIT_SIZE = 50; // unité de mesure dans notre programme
-    static final int GAME_UNITS = (GAME_PANE_HEIGHT * GAME_PANE_WIDTH) / UNIT_SIZE;
+
     MainWindowController controller;
     MainWindow mainWindow;
     private PlateauPanel plateauPanel;
@@ -31,12 +28,12 @@ public class GamePane extends JPanel {
     JLabel nomJoueur;
     JLabel niveauActuel;
     JLabel score;
-    // JPanel plateau = new JPanel();
+
     JPanel header = new JPanel();
     JPanel footer = new JPanel();
 
     private Icon bmbImage, missileImage, indiceImage;
-
+    JButton missileButton, bombButton, indiceButton;
     BufferedImage image;
 
     public GamePane() {
@@ -62,12 +59,13 @@ public class GamePane extends JPanel {
         this.niveauActuel.setText(String.valueOf(this.controller.getJoueur().getniveauActuel()));
         this.setLayout(new BorderLayout());
         this.setBorder(new EmptyBorder(50, 50, 50, 50));
-        // this.removeAll();
-        // this.revalidate();
+        this.removeAll();
+        this.revalidate();
         plateauPanel = new PlateauPanel(mainWindow, controller);
         this.add(plateauPanel, BorderLayout.CENTER);
         footer.removeAll();
         footer.revalidate();
+
         setHeader();// organiser la vue du header
         setFooter();// organiser la vue du footer
 
@@ -91,21 +89,45 @@ public class GamePane extends JPanel {
         footer.setLayout(new FlowLayout());
         footer.setOpaque(false);
 
-        JButton missileButton = new JButton(
-                String.valueOf(controller.getPartie().getNiveauAJouer().getAides().getNbMissiles()), missileImage);
-        JButton bombButton = new JButton(bmbImage);
-        JButton indiceButton = new JButton(indiceImage);
+        missileButton = new JButton(String.valueOf(controller.getPartie().getNiveauAJouer().getAides().getNbMissiles()),
+                missileImage);
+        bombButton = new JButton(String.valueOf(controller.getPartie().getNiveauAJouer().getAides().getNbBombes()),
+                bmbImage);
+        indiceButton = new JButton(String.valueOf(controller.getPartie().getNiveauAJouer().getAides().getNbIndices()),
+                indiceImage);
 
         footer.add(missileButton);
         footer.add(bombButton);
         footer.add(indiceButton);
 
         missileButton.addActionListener(e -> {
-            controller.setMissileActive(true);
+
+            // on va vérifier ici si on des missiles
+            if (!controller.getPartie().getNiveauAJouer().getAides().missileDisponible()/* ici on fait le test */) {
+
+                JOptionPane.showMessageDialog(this, "Pas de missile disponible !!");
+            } else {
+                controller.setMissileActive(true);
+                missileButton.setText(
+                        String.valueOf(controller.getPartie().getNiveauAJouer().getAides().getNbMissiles() - 1));
+                // apartir du niveau 1 ça affiche le nombre de missile -1 une fois on clique
+                // dessus
+            }
 
         });
         bombButton.addActionListener(e -> {
-            controller.setBombActive(true);
+
+            if (!controller.getPartie().getNiveauAJouer().getAides().bombesDisponible()/* ici on fait le test */) {
+
+                JOptionPane.showMessageDialog(this, "Pas de bombe disponible !!");
+            } else {
+                controller.setBombActive(true);
+                bombButton
+                        .setText(String.valueOf(controller.getPartie().getNiveauAJouer().getAides().getNbBombes() - 1));
+                // apartir du niveau 1 ça affiche le nombre de bombes - 1 une fois on clique
+                // dessus
+            }
+
         });
 
         indiceButton.addActionListener(e -> {
@@ -115,9 +137,11 @@ public class GamePane extends JPanel {
                 ArrayList<Integer> indiceArrayList;
                 try {
                     indiceArrayList = controller.getPartie().utiliserIndice();
+
                     JOptionPane.showMessageDialog(this, "*** la meilleure case à detruire est : ligne : "
                             + indiceArrayList.get(0) + " : colonne :" + indiceArrayList.get(1) + "  ***");
-
+                    indiceButton.setText(
+                            String.valueOf(controller.getPartie().getNiveauAJouer().getAides().getNbIndices()));
                 } catch (CloneNotSupportedException e1) {
 
                     e1.printStackTrace();
@@ -155,4 +179,5 @@ public class GamePane extends JPanel {
     public PlateauPanel getPlateauPanel() {
         return plateauPanel;
     }
+
 }

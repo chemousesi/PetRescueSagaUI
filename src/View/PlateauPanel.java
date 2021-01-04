@@ -91,12 +91,10 @@ public class PlateauPanel extends JPanel {
         private static final long serialVersionUID = 1L;
 
         private Color color;
-        private Rectangle rect;
 
         public BriqueView(int i, int j, Color c) {
             super(i, j);
             this.color = c;
-            // rect = new Rectangle(10, 10, getWidth() - 20, getHeight() - 20);
 
             this.addMouseListener(new MyMouseAdapter());
         }
@@ -106,7 +104,6 @@ public class PlateauPanel extends JPanel {
             super.paintComponent(g);
             g.setColor(color);
             g.fillRect(10, 10, getWidth() - 20, getHeight() - 20);
-            // g.fillRect(rect.x, rect.y, (int) rect.getWidth(), (int) rect.getHeight());
 
         }
 
@@ -126,16 +123,12 @@ public class PlateauPanel extends JPanel {
 
                     if (controller.getMissileActive()) {
                         // voir si on veut utiliser un missile
-                        if (!controller.getPartie().utiliserMissile(c)/* ici on fait le test */)
-                            JOptionPane.showMessageDialog(PlateauPanel.this, "plus de missile disponible !!");
-
+                        controller.getPartie().utiliserMissile(c);
                         controller.setMissileActive(false);
 
                     }
                     if (controller.getBombActive()) {
-                        if (!controller.getPartie().utiliserBomb(l, c)) {
-                            JOptionPane.showMessageDialog(PlateauPanel.this, "Plus de Bombe disponible !! ");
-                        }
+                        controller.getPartie().utiliserBomb(l, c);
                         controller.setBombActive(false);
                     }
 
@@ -166,6 +159,8 @@ public class PlateauPanel extends JPanel {
                         PlateauPanel.this.revalidate();
                         PlateauPanel.this.remplireGridLayoutFromPlateau();
                         PlateauPanel.this.repaint();
+                        PlateauPanel.this.mainWindow.getGamePane().initialise(mainWindow, controller);
+                        // PlateauPanel.this.mainWindow.getGamePane().repaint();
                     } else {
                         PlateauPanel.this.removeAll();
                         PlateauPanel.this.revalidate();
