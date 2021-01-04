@@ -208,9 +208,6 @@ public class Partie {
         // false s'il en reste plus
 
         ArrayList<Integer> arraylist = this.niveauAJouer.getPlateau().avoirBonCase();
-        System.out.println(
-                "*** la meilleure case à detruire est [ " + arraylist.get(0) + " : " + arraylist.get(1) + " ] ***");
-        System.out.println("*** le score à gagner est : " + arraylist.get(2) + " ***");
 
         this.niveauAJouer.getAides().enleverIndice();
 

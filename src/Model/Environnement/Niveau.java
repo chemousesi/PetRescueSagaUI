@@ -53,6 +53,7 @@ public class Niveau implements Serializable, Cloneable {
     @Override
     public Object clone() throws CloneNotSupportedException {
         // TODO Auto-generated method stub
-        return new Niveau(numero, (Plateau) plateau.clone(), conditionsDeGagner, aides);
+        return new Niveau(numero, (Plateau) plateau.clone(), (Conditions) conditionsDeGagner.clone(),
+                (Aide) aides.clone());
     }
 }
