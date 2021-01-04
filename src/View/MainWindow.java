@@ -3,7 +3,6 @@ package View;
 import javax.swing.*;
 
 import Controller.MainWindowController;
-import Model.MainModel;
 import Model.Environnement.Jeu;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -15,7 +14,7 @@ public class MainWindow extends JFrame {
     private JButton registerBtn = new JButton("S'inscrire");
     private JButton exitBtn = new JButton("Quitter");
     private JPanel jContentPane = new JPanel();
-    private MainModel model;
+
     private MainWindowController controller = new MainWindowController();
     private InscriptionView inscriptionView = new InscriptionView(this, controller);
     private ConnexionView connexionView = new ConnexionView(this, controller);
