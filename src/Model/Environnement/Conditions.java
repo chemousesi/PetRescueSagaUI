@@ -25,7 +25,6 @@ public class Conditions implements Serializable, Cloneable {
 
     @Override
     public Object clone() throws CloneNotSupportedException {
-
         return super.clone();
     }
 }

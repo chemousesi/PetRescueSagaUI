@@ -66,7 +66,6 @@ public class Aide implements Serializable, Cloneable { /// pour identifier les a
 
     @Override
     public Object clone() throws CloneNotSupportedException {
-
         return super.clone();
     }
 

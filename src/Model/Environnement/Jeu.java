@@ -178,17 +178,19 @@ public class Jeu {
         joueurs = new ArrayList<>();
         ObjectInputStream reader;
         File dirJoueurs = new File("src/Model/Joueurs");
-        for (String path : dirJoueurs.list()) {
-            try {
-                reader = new ObjectInputStream(new FileInputStream("src/Model/Joueurs/" + path));
-                joueurs.add((Joueur) reader.readObject());
+        if (dirJoueurs.list() != null) {
+            for (String path : dirJoueurs.list()) {
+                try {
+                    reader = new ObjectInputStream(new FileInputStream("src/Model/Joueurs/" + path));
+                    joueurs.add((Joueur) reader.readObject());
 
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         }
         nbJoueurs = joueurs.size();
@@ -197,18 +199,18 @@ public class Jeu {
     public static void sauvegarderJoueurs() {
         final String joueur = "Joueur";
         ObjectOutputStream writer = null;
-
-        try {
-            for (int i = 1; i <= nbJoueurs; i++) {
-                String path = "src/Model/Joueurs/" + joueur + String.valueOf(i) + ".txt";
-                writer = new ObjectOutputStream(new FileOutputStream(path));
-                writer.writeObject(joueurs.get(i - 1));
+        if (nbJoueurs != 0) {
+            try {
+                for (int i = 1; i <= nbJoueurs; i++) {
+                    String path = "src/Model/Joueurs/" + joueur + String.valueOf(i) + ".txt";
+                    writer = new ObjectOutputStream(new FileOutputStream(path));
+                    writer.writeObject(joueurs.get(i - 1));
+                }
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-
     }
 
     private static void telechargerParametresDuJeu() {
