@@ -1,14 +1,21 @@
-## Getting Started
+## Pet Rescue Saga
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+      Ce jeu est une version desktop du fameux jeu Pet Rescue Saga, dans lequel, il ya des plateaux, des briques et des animaux à sauver.
+      Ce jeu est fait comme projet pour le module de POO en Deuxième année de licence en Infirmatique à L'université de Paris
+      Par :
+      - Benaziza Chems Eddine
+      - Lamamra Nouredine 
+##  Structure Dossier 
 
-## Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
+- `src`: le dossier qui conteirnt les codes sources
 - `lib`: the folder to maintain dependencies
+- `sounds`: dossier qui contient les effets sonores 
+- `images`: dossier qui contient toutes les images necessaires pour le jeu
 
 ## Dependency Management
+ ce projet marche avec la Bibliothèque graphiique Swing de java, il ne nécessite aucun ajout externe, pour le mettre en marche
+  ouvrez le dans un IDE java de votre choix ,ou un editeur (de préférence VSCODE) et lancer l'execution du projet,
 
-The `JAVA DEPENDENCIES` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-pack/blob/master/release-notes/v0.9.0.md#work-with-jar-files-directly).
+  Jouez, Amusez-vous, 
+
+  ** on vous mettra le lien vers une version qui s'éxecute avec une ligne de commande  
