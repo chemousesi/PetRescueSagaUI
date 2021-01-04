@@ -1,14 +1,15 @@
 ## Pet Rescue Saga
 
-      Ce jeu est une version desktop du fameux jeu Pet Rescue Saga, dans lequel, il ya des plateaux, des briques et des animaux à sauver.
-      Ce jeu est fait comme projet pour le module de POO en Deuxième année de licence en Infirmatique à L'université de Paris
-      Par :
-      - Benaziza Chems Eddine
-      - Lamamra Nouredine 
+Ce jeu est une version desktop du fameux jeu Pet Rescue Saga, dans lequel,
+ il ya des plateaux, des briques et des animaux à sauver.
+Ce jeu est fait comme projet pour le module de POO en
+ Deuxième année de licence en Infirmatique à L'université de Paris
+ Par :
+- Benaziza Chems Eddine
+- Lamamra Nouredine 
 ##  Structure Dossier 
 
 - `src`: le dossier qui conteirnt les codes sources
-- `lib`: the folder to maintain dependencies
 - `sounds`: dossier qui contient les effets sonores 
 - `images`: dossier qui contient toutes les images necessaires pour le jeu
 
@@ -18,4 +19,4 @@
 
   Jouez, Amusez-vous, 
 
-  ** on vous mettra le lien vers une version qui s'éxecute avec une ligne de commande  
+  ** on vous mettra le lien vers une version qui s'éxecute avec une ligne de commande bientôt
