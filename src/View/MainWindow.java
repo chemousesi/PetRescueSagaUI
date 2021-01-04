@@ -5,7 +5,8 @@ import javax.swing.*;
 import Controller.MainWindowController;
 import Model.MainModel;
 import Model.Environnement.Jeu;
-
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.*;
 
 public class MainWindow extends JFrame {
@@ -68,7 +69,16 @@ public class MainWindow extends JFrame {
         });
 
         exitBtn.addActionListener(e -> {
+            Jeu.sauvegarderJoueurs();
             System.exit(0);
+        });
+
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                Jeu.sauvegarderJoueurs();
+                super.windowClosing(e);
+            }
         });
 
     }
@@ -173,8 +183,10 @@ public class MainWindow extends JFrame {
             this.deconnexion.setEnabled(false);
         });
         exit.addActionListener((e) -> {
+            Jeu.sauvegarderJoueurs();
             System.exit(0);
         });
+
         return menuBar;
     }
 

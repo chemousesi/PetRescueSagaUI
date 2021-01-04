@@ -69,4 +69,8 @@ public class Aide implements Serializable, Cloneable { /// pour identifier les a
 
         return super.clone();
     }
+
+    public boolean pasDeBombesEtDeMissilesDisponibles() {
+        return missileDisponible() && bombesDisponible();
+    }
 }

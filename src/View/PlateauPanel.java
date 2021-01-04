@@ -148,7 +148,8 @@ public class PlateauPanel extends JPanel {
                     JOptionPane.showMessageDialog(PlateauPanel.this, "La partie est gagné !!");
                     PlateauPanel.this.mainWindow.getCardLayout().show(PlateauPanel.this.mainWindow.getJContentPane(),
                             "3");
-                } else if (PlateauPanel.this.controller.getPartie().estPerdue()) {
+                } else if (PlateauPanel.this.controller.getPartie().estPerdue() && !PlateauPanel.this.controller
+                        .getPartie().getNiveauAJouer().getAides().pasDeBombesEtDeMissilesDisponibles()) {
                     PlateauPanel.this.controller.getAudioGame().lancePerdreSound();
 
                     int choix = JOptionPane.showConfirmDialog(PlateauPanel.this.mainWindow.getJContentPane(),
