@@ -19,4 +19,10 @@ Ce jeu est fait comme projet pour le module de POO en
 
   Jouez, Amusez-vous, 
 
+
+ - pour une éxecution dans la ligne de commande 
+```
+javac App.java
+```
+
   ** on vous mettra le lien vers une version qui s'éxecute avec une ligne de commande bientôt
