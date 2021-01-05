@@ -1,7 +1,6 @@
 package Model.Environnement;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Joueur implements Serializable {
@@ -61,7 +60,7 @@ public class Joueur implements Serializable {
 
     public void addElemToHistorique(int niveau, int nbPointsGagnees) {
         this.historique.addFirst(new ElementHistorique(niveau, nbPointsGagnees));
-        if (this.historique.size() > 5)
+        if (this.historique.size() > 5) /// accepter que 5 élt dans l'historique.
             this.historique.removeLast();
     }
 

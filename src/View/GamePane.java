@@ -10,38 +10,37 @@ import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.awt.*;
 
 import Controller.MainWindowController;
 
 public class GamePane extends JPanel {
 
     /**
-     *
+     * cette vue designe le panneau qui englobe le plateau pannel
      */
 
     private static final long serialVersionUID = 1L;
 
-    MainWindowController controller;
-    MainWindow mainWindow;
+    private MainWindowController controller;
+    private MainWindow mainWindow;
     private PlateauPanel plateauPanel;
 
-    JLabel nomJoueur;
-    JLabel niveauActuel;
-    JLabel score;
-    JLabel conditionsPoints;
-    JLabel conditionsAnimal;
+    private JLabel nomJoueur;
+    private JLabel niveauActuel;
+    private JLabel score;
+    private JLabel conditionsPoints;
+    private JLabel conditionsAnimal;
 
-    JPanel header = new JPanel();
-    JPanel footer = new JPanel();
+    private JPanel header = new JPanel();
+    private JPanel footer = new JPanel();
 
     private Icon bmbImage, missileImage, indiceImage;
-    JButton missileButton, bombButton, indiceButton;
-    BufferedImage image;
+    private JButton missileButton, bombButton, indiceButton;
+    private BufferedImage image;
 
     public GamePane() {
-        chargerImage("imgs/bg_min.jpg");
-        chargerIcons();
+        chargerImage("imgs/bg_min.jpg");/// charger l'image de background.
+        chargerIcons();/// charger les icones.
 
         this.nomJoueur = new JLabel(new ImageIcon("imgs/gamer.png"));
         this.niveauActuel = new JLabel(new ImageIcon("imgs/level.png"));
@@ -53,24 +52,31 @@ public class GamePane extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(image, 0, 0, null);
+        g.drawImage(image, 0, 0, null);/// afficher l'image de background.
+        /// affichage du nombre points gagnés
         this.score.setText(String.valueOf(this.controller.getPartie().getNbPointsGangerParLeJoueur()));
     }
 
     public void initialise(MainWindow mainWindow, MainWindowController controller) {
+
+        // initialisation de la fenêtre principale
         this.mainWindow = mainWindow;
         this.controller = controller;
+        // affichage du nom du joueur
         this.nomJoueur.setText(this.controller.getJoueur().getnom());
         this.niveauActuel.setText(String.valueOf(this.controller.getJoueur().getniveauActuel()));
+
         this.conditionsPoints.setText(String
                 .valueOf(this.controller.getPartie().getNiveauAJouer().getConditionsDeGagner().getNbPointsAGagner()));
         this.conditionsAnimal.setText(String
                 .valueOf(this.controller.getPartie().getNiveauAJouer().getConditionsDeGagner().getNbAnimauxASauver()));
         this.setLayout(new BorderLayout());
+        // marges
         this.setBorder(new EmptyBorder(50, 50, 50, 50));
         this.removeAll();
         this.revalidate();
         plateauPanel = new PlateauPanel(mainWindow, controller);
+
         this.add(plateauPanel, BorderLayout.CENTER);
         footer.removeAll();
         footer.revalidate();
@@ -85,11 +91,13 @@ public class GamePane extends JPanel {
     }
 
     public void chargerImage(String chemin) {
+        // charger le background
         try {
             image = ImageIO.read(new File(chemin));
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     public void setFooter() {
@@ -98,6 +106,7 @@ public class GamePane extends JPanel {
         footer.setLayout(new FlowLayout());
         footer.setOpaque(false);
 
+        // rajouter les bouttons des aides
         missileButton = new JButton(String.valueOf(controller.getPartie().getNiveauAJouer().getAides().getNbMissiles()),
                 missileImage);
         bombButton = new JButton(String.valueOf(controller.getPartie().getNiveauAJouer().getAides().getNbBombes()),
@@ -109,6 +118,7 @@ public class GamePane extends JPanel {
         footer.add(bombButton);
         footer.add(indiceButton);
 
+        // ajouter les listeners aux bouttons d'aides
         missileButton.addActionListener(e -> {
 
             // on va vérifier ici si on des missiles
@@ -140,11 +150,14 @@ public class GamePane extends JPanel {
         });
 
         indiceButton.addActionListener(e -> {
+            // indice boutton c'est le boutton qui affiche la meilleure case a détruire à
+            // partir du score que sa destruction peut générer
 
             if (controller.getPartie().getNiveauAJouer().getAides().indiceDisponible()) {
-
+                // cas ou nous avons deds indices dispo dans notre niveau
                 ArrayList<Integer> indiceArrayList;
                 try {
+                    // la fonction utiliser va rendre utiliser indice
                     indiceArrayList = controller.getPartie().utiliserIndice();
 
                     JOptionPane.showMessageDialog(this, "*** la meilleure case à detruire est : ligne : "
@@ -157,7 +170,8 @@ public class GamePane extends JPanel {
                 }
 
             } else {
-                JOptionPane.showMessageDialog(this, "Plus d'indice disponible !! ");
+                // cas de non diponibilité d'indice
+                JOptionPane.showMessageDialog(this, "Pas d'indice disponible !! ");
 
             }
 
@@ -166,6 +180,10 @@ public class GamePane extends JPanel {
     }
 
     public void setHeader() {
+        /**
+         * le header c'est la partie en haut de notre plateau, elle affiche le nom du
+         * joueur le score
+         */
         header.setBackground(Color.GREEN);
         header.add(nomJoueur);
         header.add(score);
@@ -176,6 +194,7 @@ public class GamePane extends JPanel {
     }
 
     public void chargerIcons() {
+        // charger les icones des aides
 
         try {
             bmbImage = new ImageIcon("imgs/bomb.png");

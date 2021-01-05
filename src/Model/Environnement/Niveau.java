@@ -51,8 +51,8 @@ public class Niveau implements Serializable, Cloneable {
     }
 
     @Override
-    public Object clone() throws CloneNotSupportedException {
-        // TODO Auto-generated method stub
+    public Object clone() throws CloneNotSupportedException { /// sert à avoir une nouvelle instance avec les mm valeurs
+                                                              /// que this.
         return new Niveau(numero, (Plateau) plateau.clone(), (Conditions) conditionsDeGagner.clone(),
                 (Aide) aides.clone());
     }

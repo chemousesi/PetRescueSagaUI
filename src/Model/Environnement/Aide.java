@@ -2,8 +2,8 @@ package Model.Environnement;
 
 import java.io.Serializable;
 
-public class Aide implements Serializable, Cloneable { /// pour identifier les aides qu'un joueur peut avoir(missile et
-
+public class Aide implements Serializable, Cloneable { /// pour identifier les aides qu'un joueur peut avoir(missile,
+    /// bombes et indices.
     private static final long serialVersionUID = 1L;
 
     private int nbMissiles;
@@ -70,6 +70,6 @@ public class Aide implements Serializable, Cloneable { /// pour identifier les a
     }
 
     public boolean pasDeBombesEtDeMissilesDisponibles() {
-        return missileDisponible() && bombesDisponible();
+        return missileDisponible() || bombesDisponible();
     }
 }

@@ -52,7 +52,10 @@ public class Plateau implements Serializable, Cloneable {
         System.out.println("\n                         " + "##############################################\n");
     }
 
-    public static Case[][] plateauNiveau1() {
+    /// les 3 méthodes plateauNiveau1,plateauNiveau2 et plateauNiveau3 ont les a
+    /// laisser pour restituer le niveau dans le cas où l'utilisateur supprime
+    /// manuellement un fichier donc ces fonctions permettant de le re-créer.
+    public static Case[][] plateauNiveau1() { /// utilisé pour la création du plateau du niveau 1.
         Case[][] cases = {
                 { new Case(null, false), new Case(null, false), new Case(null, false), new Case(null, false),
                         new Case(null, false), new Case(null, false), },
@@ -77,7 +80,7 @@ public class Plateau implements Serializable, Cloneable {
         return cases;
     }
 
-    public static Case[][] plateauNiveau2() {
+    public static Case[][] plateauNiveau2() {/// utilisé pour la création du plateau du niveau 2.
         Case[][] cases = {
                 { new Case(null, false), new Case(null, false), new Case(null, false), new Case(null, false),
                         new Case(null, false), new Case(null, false), new Case(null, false), new Case(null, false),
@@ -133,7 +136,7 @@ public class Plateau implements Serializable, Cloneable {
         return cases;
     }
 
-    public static Case[][] plateauNiveau3() {
+    public static Case[][] plateauNiveau3() { /// création du plateau niveau 3.
         Case[][] cases = {
                 { new Case(null, false), new Case(null, false), new Case(null, false), new Case(null, false),
                         new Case(null, false), new Case(null, false), new Case(null, false), new Case(null, false) },
@@ -354,9 +357,9 @@ public class Plateau implements Serializable, Cloneable {
                         j = cases.length - 2;
                     }
                 }
-            } else if (!cases[j][i].estVide() && !cases[j][i].getElement().estMobile()) {
+            } else if (!cases[j][i].estVide() && !cases[j][i].getElement().estMobile()) { /// on a trouvé un obstacle.
                 if (i - 1 >= 1) {
-                    if (cases[j][i - 1].estVide()) {
+                    if (cases[j][i - 1].estVide()) { /// verifier si la case au mm niveau que l'obstacle est vide.
                         obstacleLigne = j;
                         videColPrec = j + 1;
                         switcher = j - 1;
@@ -421,7 +424,8 @@ public class Plateau implements Serializable, Cloneable {
         }
     }
 
-    public int animalSauve() throws CloneNotSupportedException {
+    public int animalSauve() throws CloneNotSupportedException { /// sauver les animaux qui se trouve sur la derniere
+                                                                 /// ligne du plateau.
         int nbAnimaux = 0;
         boolean fin = false;
         boolean enter;
@@ -434,7 +438,7 @@ public class Plateau implements Serializable, Cloneable {
                     enter = true;
                 }
             }
-            if (enter)
+            if (enter) /// si un animal a été sauvé donc il faut réorganiser le plateau.
                 this.reorganiserPlateau();
             else
                 fin = true;
@@ -465,7 +469,7 @@ public class Plateau implements Serializable, Cloneable {
         return score;
     }
 
-    public int detruireCasesParBombe(int l, int c) {
+    public int detruireCasesParBombe(int l, int c) { /// elle détruit les cases .
         int score = 2;
         this.cases[l][c].vider();
 
@@ -482,7 +486,8 @@ public class Plateau implements Serializable, Cloneable {
         return score;
     }
 
-    public ArrayList<Integer> avoirBonCase() {
+    public ArrayList<Integer> avoirBonCase() { /// permet d'avoir la meilleur case à detruire ainsi le score qui sera
+                                               /// gagné.
         int scoreMax = 0, scoreTemp;
         int l = 1, c = 1;
         try {

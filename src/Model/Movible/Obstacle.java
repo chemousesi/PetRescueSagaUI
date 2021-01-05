@@ -5,7 +5,6 @@ public class Obstacle extends Brique {
      *
      */
     private static final long serialVersionUID = 1L;
-    private String icon;/// pour la partie graphique.
 
     public Obstacle(Couleur couleur) {
         super(couleur);

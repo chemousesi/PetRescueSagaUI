@@ -6,7 +6,7 @@ import java.awt.Graphics;
 public class EmptyBlockView extends ComponentView {
 
     /**
-     *
+     * cette classe représente la vue du bloc vide
      */
     private static final long serialVersionUID = 1L;
 
