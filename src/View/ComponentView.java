@@ -6,7 +6,7 @@ import java.awt.*;
 public abstract class ComponentView extends JComponent {
 
     /**
-     *
+     * vue d'un component sur le plateau une brique ou un animal
      */
     private static final long serialVersionUID = 1L;
     protected int l, c;

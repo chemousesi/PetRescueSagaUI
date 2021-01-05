@@ -12,12 +12,21 @@ import java.awt.*;
 
 public class ConnexionView extends View {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    /**
+     * page de la connexion, quand l'utilisateur a déjà un compte et il souhaote se
+     * connecter et avoir ses données
+     */
+
     // declaration des champs
-    JLabel titre = new JLabel("Connexion");
-    JPanel formPanel = new JPanel();
-    JTextField pseudoTextField = new JTextField();
-    JButton connectButton = new JButton("se connecter");
-    JButton retourButton = new JButton("retour");
+    private JLabel titre = new JLabel("Connexion");
+    private JPanel formPanel = new JPanel();
+    private JTextField pseudoTextField = new JTextField();
+    private JButton connectButton = new JButton("se connecter");
+    private JButton retourButton = new JButton("retour");
 
     public ConnexionView(MainWindow mainWindow, MainWindowController mController) {
         super(mainWindow, mController);
@@ -49,6 +58,7 @@ public class ConnexionView extends View {
         formPanel.add(connectButton);
         formPanel.add(retourButton);
 
+        // boutton de connexion
         connectButton.addActionListener(e -> {
             Joueur joueur = Jeu.connexion(pseudoTextField.getText().trim());
             if (joueur != null) {
@@ -61,6 +71,7 @@ public class ConnexionView extends View {
             }
         });
 
+        // boutton retour au menu de départ
         retourButton.addActionListener(e -> {
             mainWindow.getCardLayout().show(mainWindow.getJContentPane(), "0");
         });

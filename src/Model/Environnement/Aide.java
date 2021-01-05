@@ -70,6 +70,6 @@ public class Aide implements Serializable, Cloneable { /// pour identifier les a
     }
 
     public boolean pasDeBombesEtDeMissilesDisponibles() {
-        return missileDisponible() && bombesDisponible();
+        return missileDisponible() || bombesDisponible();
     }
 }

@@ -23,36 +23,44 @@ import Model.Movible.Case;
 public class PlateauPanel extends JPanel {
 
     /**
-     *
+     * le plateau sur le quel les niveaux sont déssinés et tout le jeu se déroule
      */
     private static final long serialVersionUID = 1L;
     private int colonnes;
     private int lignes;
     private MainWindowController controller;
     private MainWindow mainWindow;
-    private BufferedImage image;
-
-    // audio part
+    BufferedImage image;
 
     public PlateauPanel(MainWindow mainWindow, MainWindowController controller) {
         super();
         this.controller = controller;
         this.mainWindow = mainWindow;
         chargerImage("imgs/bg.jpg");
-        // this.setBackground(new Color(0, 0, 0, 80));
-        this.setOpaque(false);
+        // this.setBackground(new Color(0, 0, 0, 80)); // ici si on souhaite garder une
+        // certaine ombre derrière
+        this.setOpaque(false); // fait pour l'affichage complètement transparent
+        // affecter le nombre de lignes et de colonnes le même que celui dans le model
         this.lignes = this.controller.getPartie().getNiveauAJouer().getPlateau().lignes - 2;
         this.colonnes = this.controller.getPartie().getNiveauAJouer().getPlateau().colonnes - 2;
+
         GridLayout gridLayout = new GridLayout(lignes, colonnes);
+
         this.remplireGridLayoutFromPlateau();
         this.repaint();
+
         gridLayout.setHgap(0);
         gridLayout.preferredLayoutSize(this);
+        // utilisation d'une grid layout dans notre modelisation
         this.setLayout(gridLayout);
 
     }
 
     private void remplireGridLayoutFromPlateau() {
+        /**
+         * cette méthode fait le remplissage de la grille à partir du plateau du model
+         * du niveau en question
+         */
         for (int i = 1; i <= lignes; i++) {
             for (int j = 1; j <= colonnes; j++) {
                 Case temp = this.controller.getPartie().getNiveauAJouer().getPlateau().getCase(i, j);
@@ -86,7 +94,9 @@ public class PlateauPanel extends JPanel {
 
     public class BriqueView extends ComponentView {
         /**
-         *
+         * classe interne Brique view dans PlateauPanel, la brique est lié au plateau
+         * sur lequel elle est déssinée la brique représente le carré coloré qu'on
+         * détruit en jouant pour sauver les animaux
          */
         private static final long serialVersionUID = 1L;
 
@@ -108,25 +118,35 @@ public class PlateauPanel extends JPanel {
         }
 
         class MyMouseAdapter extends MouseAdapter {
+            /**
+             * nous avons implémenter à l'interieur de la brique u Mouse Adapter pour
+             * pouvoir récupérer les événement de la souris
+             * 
+             */
 
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                // son de destruction quand on clique sur brique
                 PlateauPanel.this.controller.getAudioGame().lanceDestructionSound();
 
                 try {
-
+                    // voir si on est entrain d'utliser un missile ou une bombe
                     if (!controller.getBombActive() && !controller.getMissileActive()) {
                         PlateauPanel.this.controller.getPartie().jouerUnTour(l, c);
 
                     }
 
+                    // traitement du cas missile
                     if (controller.getMissileActive()) {
-                        // voir si on veut utiliser un missile
+
                         controller.getPartie().utiliserMissile(c);
                         controller.setMissileActive(false);
 
                     }
+
+                    // traitement du cas bombe
+
                     if (controller.getBombActive()) {
                         controller.getPartie().utiliserBomb(l, c);
                         controller.setBombActive(false);
@@ -136,11 +156,15 @@ public class PlateauPanel extends JPanel {
                     ex.printStackTrace();
                 }
 
+                // suppression de tout les éléments
                 PlateauPanel.this.removeAll();
                 PlateauPanel.this.revalidate();
+                // remplissage nouveau
                 PlateauPanel.this.remplireGridLayoutFromPlateau();
                 PlateauPanel.this.repaint();
+
                 if (PlateauPanel.this.controller.getPartie().estGagne()) {
+                    // si on gagne à ce clique
                     PlateauPanel.this.controller.getAudioGame().lanceGangnerSound();
                     PlateauPanel.this.removeAll();
                     PlateauPanel.this.revalidate();
@@ -150,11 +174,16 @@ public class PlateauPanel extends JPanel {
                             "3");
                 } else if (PlateauPanel.this.controller.getPartie().estPerdue() && !PlateauPanel.this.controller
                         .getPartie().getNiveauAJouer().getAides().pasDeBombesEtDeMissilesDisponibles()) {
+                    // si on perd :
+
                     PlateauPanel.this.controller.getAudioGame().lancePerdreSound();
 
+                    // on propose le choix si on souhaite rejouer ou pas
                     int choix = JOptionPane.showConfirmDialog(PlateauPanel.this.mainWindow.getJContentPane(),
                             "Voulez-vous réessayer ?", "", JOptionPane.YES_NO_OPTION);
+
                     if (choix == JOptionPane.YES_OPTION) {
+
                         PlateauPanel.this.controller.jouerEnModeGraphique();
                         PlateauPanel.this.removeAll();
                         PlateauPanel.this.revalidate();
@@ -172,11 +201,10 @@ public class PlateauPanel extends JPanel {
                 }
             }
 
+            // faire l'animation quand la souris passe au dessus d'une brique
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                // rect.setSize((int) rect.getWidth() - 10, (int) rect.getHeight() - 10);
-                // BriqueView.this.setBounds(15, 15, getWidth() - 30, getHeight() - 30);
                 BriqueView.this.setSize(getWidth() - 5, getHeight() - 5);
                 repaint();
             }
@@ -184,7 +212,6 @@ public class PlateauPanel extends JPanel {
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e);
-                // rect.setSize((int) rect.getWidth() + 10, (int) rect.getHeight() + 10);
                 BriqueView.this.setSize(getWidth() + 5, getHeight() + 5);
                 repaint();
             }

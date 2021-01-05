@@ -10,6 +10,11 @@ import java.awt.*;
 
 public class MainWindow extends JFrame {
 
+    /**
+     * la fenêtre principale du jeu
+     * 
+     */
+
     private JButton connectBtn = new JButton("Se connecter");
     private JButton registerBtn = new JButton("S'inscrire");
     private JButton exitBtn = new JButton("Quitter");
@@ -19,10 +24,12 @@ public class MainWindow extends JFrame {
     private InscriptionView inscriptionView = new InscriptionView(this, controller);
     private ConnexionView connexionView = new ConnexionView(this, controller);
     private MenuJeu menuJeu = new MenuJeu(this, controller);
-    private CardLayout cl = new CardLayout();
+
     private GamePane gamePane = new GamePane();
     private AidePanel aidePanel = new AidePanel(this, controller);
     private HistoriqueView historiqueView = new HistoriqueView(this, controller);
+    // utilisation d'une card layout
+    private CardLayout cl = new CardLayout();
 
     private JMenuItem deconnexion = new JMenuItem("Deconnexion");
     private JMenuItem exit = new JMenuItem("Quitter");
@@ -36,12 +43,13 @@ public class MainWindow extends JFrame {
         jContentPane.setLayout(cl);
         initialize();
 
+        // lancement du jeu dans le model
         Jeu.lancerJeu();
-        // this.setContentPane(createJContentPane());
 
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setLocationRelativeTo(null);
 
+        // ajouter toutes les autres vues au card layout avec des descriptions
         jContentPane.add(welcomeMenu(), "0");
         jContentPane.add(inscriptionView, "2");
         jContentPane.add(connexionView, "1");
@@ -50,6 +58,7 @@ public class MainWindow extends JFrame {
         jContentPane.add(aidePanel, "5");
         jContentPane.add(historiqueView, "6");
 
+        // afficher la première vue
         cl.show(jContentPane, "0");
         this.add(jContentPane);
 
@@ -101,6 +110,9 @@ public class MainWindow extends JFrame {
     }
 
     public JPanel welcomeMenu() {
+        /**
+         * création du premier menu au lancement du jeu
+         */
 
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -134,6 +146,10 @@ public class MainWindow extends JFrame {
     }
 
     JMenuBar createJMenuBar() {
+        /**
+         * création du menu bar
+         */
+
         JMenuBar menuBar = new JMenuBar();
         JLabel joueurActuel = new JLabel();
         ImageIcon imageIcon = new ImageIcon("imgs/dog.png");

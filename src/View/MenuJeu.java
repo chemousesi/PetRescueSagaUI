@@ -11,12 +11,16 @@ import Model.Environnement.Partie;
 
 public class MenuJeu extends View {
 
-    JButton jouerButton = new JButton(" Jouer ");
-    JButton historiqueButton = new JButton("Historique");
-    JButton helpButton = new JButton("Aide");
-    JButton deconnectButton = new JButton("Deconnexion");
-    JPanel buttonsPanel = new JPanel();
-    JLabel titreMenu = new JLabel("Menu Jeu");
+    /**
+     * Le menu du jeu après la connexion ou l'inscription
+     */
+
+    private JButton jouerButton = new JButton(" Jouer ");
+    private JButton historiqueButton = new JButton("Historique");
+    private JButton helpButton = new JButton("Aide");
+    private JButton deconnectButton = new JButton("Deconnexion");
+    private JPanel buttonsPanel = new JPanel();
+    private JLabel titreMenu = new JLabel("Menu Jeu");
 
     public MenuJeu(MainWindow mainWindow, MainWindowController controller) {
         super(mainWindow, controller);
@@ -24,6 +28,8 @@ public class MenuJeu extends View {
     }
 
     public void initialize() {
+        // initialiser le pane
+
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(Box.createRigidArea(new DimensionUIResource(0, 150)));
@@ -59,6 +65,7 @@ public class MenuJeu extends View {
             }
         });
 
+        // rajouter les listeners aux bouttons
         helpButton.addActionListener(e -> {
             mainWindow.getCardLayout().show(mainWindow.getJContentPane(), "5");
         });

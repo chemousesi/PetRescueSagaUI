@@ -10,7 +10,7 @@ import javax.imageio.ImageIO;
 public class ObstacleView extends ComponentView {
 
     /**
-     *
+     * vue de l'obstacle dans le jeu représenté par un mur de brique
      */
     private static final long serialVersionUID = 1L;
     BufferedImage imageNiv1, imageNiv2;

@@ -9,7 +9,7 @@ import java.awt.*;
 public class AnimalView extends ComponentView {
 
     /**
-     *
+     * la vue de de l'animal à sauver elle hérite de component view
      */
     private static final long serialVersionUID = 1L;
     private BufferedImage image;

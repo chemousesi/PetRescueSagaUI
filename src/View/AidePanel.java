@@ -15,8 +15,9 @@ import Controller.MainWindowController;
 public class AidePanel extends View {
 
     /**
-     *
+     * panneau fait pour l'affichage d'aide et d'explication dans le jeu
      */
+
     private static final long serialVersionUID = 1L;
     private static String consignes[] = { "Cliquer sur la brique à détruire.",
             "Pour utiliser un missile activez le sur l'icone missile et cliquer sur la colonne à détruire.",

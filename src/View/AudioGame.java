@@ -6,6 +6,11 @@ import java.io.File;
 import java.net.URL;
 
 public class AudioGame {
+
+    /*
+     * dans cette classe on fait la gestion des effets de son
+     */
+
     private Clip clip;
     private Clip tempClip;
 
