@@ -39,6 +39,7 @@ public class MenuJeu extends View {
         this.setBorder(new EmptyBorder(100, 100, 100, 100));
         this.add(Box.createRigidArea(new DimensionUIResource(0, 20)));
 
+        // rajouter les boutons dans la grille
         buttonsPanel.setLayout(new GridLayout(2, 2, 10, 10));
         buttonsPanel.add(jouerButton);
         buttonsPanel.add(historiqueButton);
@@ -48,12 +49,16 @@ public class MenuJeu extends View {
         buttonsPanel.setAlignmentX(CENTER_ALIGNMENT);
         this.add(buttonsPanel);
 
+        // boutton du lancement d'une partie
         jouerButton.addActionListener(e -> {
+            // lancer une partie dans le backend
             Partie p = controller.jouerEnModeGraphique();
             if (p != null) {
+                // cas ou la partie est null ie: première fois
                 mainWindow.getGamePane().initialise(mainWindow, controller);
                 mainWindow.getCardLayout().show(mainWindow.getJContentPane(), "4");
             } else {
+                // cas partie existante
                 int choix = JOptionPane.showConfirmDialog(mainWindow, "Voulez-vous recommencer ?", "Fin Du Jeu",
                         JOptionPane.YES_NO_OPTION);
                 if (choix == JOptionPane.YES_OPTION) {
@@ -66,14 +71,17 @@ public class MenuJeu extends View {
         });
 
         // rajouter les listeners aux bouttons
+        // boutton pour l'affichage des aides
         helpButton.addActionListener(e -> {
             mainWindow.getCardLayout().show(mainWindow.getJContentPane(), "5");
         });
+        // boutton pour l'affichage de l'historique
         historiqueButton.addActionListener((e) -> {
             mainWindow.getHistoriqueView().initialise();
             mainWindow.getCardLayout().show(mainWindow.getJContentPane(), "6");
         });
 
+        // boutton pour se déconnecter
         deconnectButton.addActionListener(e -> {
             controller.setJoueur(null);
             mainWindow.getCardLayout().show(mainWindow.getJContentPane(), "0");

@@ -1,7 +1,6 @@
 package View;
 
 import javax.swing.JComponent;
-import java.awt.*;
 
 public abstract class ComponentView extends JComponent {
 

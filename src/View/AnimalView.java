@@ -14,12 +14,12 @@ public class AnimalView extends ComponentView {
     private static final long serialVersionUID = 1L;
     private BufferedImage image;
 
-    AnimalView(int l, int c, String chemin) {
+    AnimalView(int l, int c, String chemin) { /// pour afficher un animal dans un plateau.
         super(l, c);
         chargerImage(chemin);
     }
 
-    public void chargerImage(String chemin) {
+    public void chargerImage(String chemin) {/// pour charger une image.
         try {
             image = ImageIO.read(new File(chemin));
         } catch (IOException e) {
@@ -29,8 +29,7 @@ public class AnimalView extends ComponentView {
 
     @Override
     protected void paintComponent(Graphics g) {
-        // TODO Auto-generated method stub
         super.paintComponent(g);
-        g.drawImage(image, 20, 20, null);
+        g.drawImage(image, 20, 20, null); /// afficher l'image de l'animal.
     }
 }

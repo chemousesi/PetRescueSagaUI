@@ -3,7 +3,6 @@ package View;
 import javax.sound.sampled.*;
 
 import java.io.File;
-import java.net.URL;
 
 public class AudioGame {
 
@@ -11,17 +10,21 @@ public class AudioGame {
      * dans cette classe on fait la gestion des effets de son
      */
 
-    private Clip clip;
-    private Clip tempClip;
+    private Clip clip; /// clip pour la musique.
+    private Clip tempClip; /// lancer un son.
 
-    public void lanceMusique() {
+    public void lanceMusique() { /// pour lancer la musique du jeu.
         try {
 
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("sounds/petMusiqueMin.wav"));
-            clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-            clip.loop(Clip.LOOP_CONTINUOUSLY);
-            clip.start();
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("sounds/petMusiqueMin.wav")); /// telecharger
+                                                                                                                       /// la
+                                                                                                                       /// musique
+                                                                                                                       /// du
+                                                                                                                       /// jeu.
+            clip = AudioSystem.getClip();/// récuperer le clip.
+            clip.open(audioInputStream);/// ouvrir le clip audio.
+            clip.loop(Clip.LOOP_CONTINUOUSLY);/// lancer l'audio en boucle.
+            clip.start(); /// lancer l'audio.
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -41,24 +44,24 @@ public class AudioGame {
 
     }
 
-    public void lanceDestructionSound() {
+    public void lanceDestructionSound() { /// lancer le son de destruction de brique.
         lancerSound("sounds/paf2.wav");
 
     }
 
-    public void lanceGangnerSound() {
+    public void lanceGangnerSound() {/// lancer le son de gagner une partie.
         lancerSound("sounds/gagner.wav");
     }
 
-    public void lancePerdreSound() {
+    public void lancePerdreSound() {/// lancer le son quand une partie est perdue.
         lancerSound("sounds/perdre.wav");
     }
 
-    public void stopMusique() {
+    public void stopMusique() { /// arreter une musique.
         clip.close();
     }
 
-    public boolean musiqueEnMarche() {
+    public boolean musiqueEnMarche() {/// voir si une chanson est lancé.
         if (clip == null) {
             return false;
         } else {

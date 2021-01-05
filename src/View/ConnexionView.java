@@ -30,24 +30,18 @@ public class ConnexionView extends View {
 
     public ConnexionView(MainWindow mainWindow, MainWindowController mController) {
         super(mainWindow, mController);
-        initilize();
-
-        // initilize buttons
+        initilize(); /// initialiser la vue.
     }
 
     private void initilize() {
-
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-
-        // titre.setSize(100, 0);// pour avoir tout le texte apparent
-        this.add(Box.createRigidArea(new Dimension(0, 100)));
-
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); /// affichage sous forme de colonne.
+        this.add(Box.createRigidArea(new Dimension(0, 100)));/// création d'un espace vide au début.
         this.add(titre);
         titre.setAlignmentX(CENTER_ALIGNMENT);
         this.add(Box.createRigidArea(new Dimension(0, 30)));
 
+        // partie formulaire
         formPanel.setLayout(new GridLayout(4, 2));
-
         formPanel.add(new Label("pseudo :"));
         formPanel.add(pseudoTextField);
 

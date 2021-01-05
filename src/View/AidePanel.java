@@ -26,14 +26,14 @@ public class AidePanel extends View {
             "Une bombe détruit la case sélectionnée avec les deux cases au dessus et en dessous horizentalement.",
             "Indice vous donne la meilleure case à detruire en matière de points.",
             "Le score est calculé par la formule : 2 ^ nombre de cases détruites." };
-    private JButton retour = new JButton("Retour");
+    private JButton retour = new JButton("Retour"); /// le bouton de retour.
 
     AidePanel(MainWindow mainWindow, MainWindowController controller) {
         super(mainWindow, controller);
-        JLabel title = new JLabel("Aide", new ImageIcon("imgs/indice.png"), 0);
-        title.setFont(new Font(title.getFont().getName(), Font.BOLD, 35));
-        this.setBorder(new EmptyBorder(200, 50, 200, 50));
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        JLabel title = new JLabel("Aide", new ImageIcon("imgs/indice.png"), 0);/// titre de la page Aide.
+        title.setFont(new Font(title.getFont().getName(), Font.BOLD, 35));/// changer la taille de la police.
+        this.setBorder(new EmptyBorder(200, 50, 200, 50));/// ajouter les bordures.
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));/// setter le layout.
         this.add(title);
         ImageIcon icone = new ImageIcon("imgs/star.png");
         for (String string : consignes) {
@@ -45,7 +45,7 @@ public class AidePanel extends View {
         initialise();
     }
 
-    private void initialise() {
+    private void initialise() { /// initialisation du listner pour le bouton retour.
         this.retour.addActionListener((e) -> {
             this.mainWindow.getCardLayout().show(this.mainWindow.getJContentPane(), "3");
         });
