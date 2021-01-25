@@ -5,7 +5,8 @@ import java.io.Serializable;
 public class ElementHistorique implements Serializable {
 
     /**
-     *
+     * pour stocker et enregistrer le nombre de points que l'user à gagner dans
+     * chaque niveau.
      */
     private static final long serialVersionUID = 1L;
     private int niveau;

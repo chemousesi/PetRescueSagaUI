@@ -3,7 +3,6 @@ package Model.Environnement;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 import Model.Movible.Case;
 
@@ -167,8 +166,6 @@ public class Partie {
         this.nbPointsGangerParLeJoueur += this.niveauAJouer.getPlateau().detruire(l, c, false);
         this.niveauAJouer.getPlateau().reorganiserPlateau();
         this.nbAnimauxSauves += this.niveauAJouer.getPlateau().animalSauve();
-        // System.out.println(this.nbPointsGangerParLeJoueur + " " +
-        // this.nbAnimauxSauves);
     }
 
     public boolean utiliserMissile(int c) throws CloneNotSupportedException {

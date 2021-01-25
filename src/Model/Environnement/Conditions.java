@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Conditions implements Serializable, Cloneable {
     /**
-     *
+     * désigne les conditions pour qu'un niveau soit gagné.
      */
     private static final long serialVersionUID = 1L;
     private int nbAnimauxASauver;

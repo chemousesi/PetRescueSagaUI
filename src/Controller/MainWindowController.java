@@ -11,7 +11,6 @@ public class MainWindowController {
     private Partie partie;
     private boolean missileActive = false;
     private boolean bombActive = false;
-    private boolean finDuJeu = false;
     private AudioGame audioGame = new AudioGame();
 
     public MainWindowController() {
@@ -32,8 +31,7 @@ public class MainWindowController {
             partie = Jeu.lancerPartie(joueur);
             if (partie != null)
                 partie.setNiveauAJouer((Niveau) Jeu.getNiveau(joueur.getniveauActuel() - 1).clone());
-            else
-                finDuJeu = true;
+
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }

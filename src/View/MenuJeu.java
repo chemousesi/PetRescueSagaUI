@@ -54,11 +54,11 @@ public class MenuJeu extends View {
             // lancer une partie dans le backend
             Partie p = controller.jouerEnModeGraphique();
             if (p != null) {
-                // cas ou la partie est null ie: première fois
+                // cas où le joueur n'a pas fini le jeu.
                 mainWindow.getGamePane().initialise(mainWindow, controller);
                 mainWindow.getCardLayout().show(mainWindow.getJContentPane(), "4");
             } else {
-                // cas partie existante
+                // cas où le joueur a fini le jeu.
                 int choix = JOptionPane.showConfirmDialog(mainWindow, "Voulez-vous recommencer ?", "Fin Du Jeu",
                         JOptionPane.YES_NO_OPTION);
                 if (choix == JOptionPane.YES_OPTION) {

@@ -25,7 +25,7 @@ public class Jeu {
         telechargerJoueurs();
     }
 
-    public static Partie lancerPartie(Joueur joueur) {
+    public static Partie lancerPartie(Joueur joueur) { /// lancer une partie pour un joueur passé en params.
         if (joueur.getniveauActuel() > nbNiveaux)
             return null;
         return new Partie(niveau[joueur.getniveauActuel() - 1], joueur);
@@ -36,7 +36,7 @@ public class Jeu {
         String[] premiersChoix = { "1- Connexion", "2- Inscription", "3- Quitter" };
         boolean exit = false;
         while (!exit) {
-            int choix_1 = menuTextuelle(premiersChoix, "Menu Principale");
+            int choix_1 = menuTextuelle(premiersChoix, "Menu Principale"); /// affichage d'un menu.
             Joueur joueur = null;
             switch (choix_1) {
                 case 1:/// connexion
@@ -75,7 +75,7 @@ public class Jeu {
                     System.exit(0);
                     break;
             }
-            if (joueur == null)
+            if (joueur == null) /// si le joueur n'existe pas.
                 throw new UserNotFound();
             String[] deuxiemeChoix = { "1- Jouer", "2- Historique", "3- Help", "4- Deconnexion" };
             boolean deconnecter = false;
@@ -84,7 +84,7 @@ public class Jeu {
                 switch (choix_2) {
                     case 1:/// jouer.
                         Partie partie = lancerPartie(joueur);
-                        if (partie == null) {
+                        if (partie == null) { /// le jeu est terminé.
                             System.out.println("*** Le jeu est terminé ***");
                             String[] reessayer = { "1- OUI", "2- NON" };
                             int choix_3 = menuTextuelle(reessayer, "Recommencer ?");
@@ -92,7 +92,7 @@ public class Jeu {
                                 joueur.setniveauActuel(1);
                             }
                         } else {
-                            partie.jouerUnePartieModeTexte();
+                            partie.jouerUnePartieModeTexte();/// lancer une partie en mode console.
                         }
                         break;
                     case 2:/// historique.
@@ -129,7 +129,7 @@ public class Jeu {
                 "\n#################################################################################################");
     }
 
-    private static void telechargerNiveaux() {
+    private static void telechargerNiveaux() { /// télécharger les niveaux utilisés.
         ObjectInputStream reader;
         File dirNiveaux = new File("src/Model/Niveaux");
         int i = 0;
@@ -146,8 +146,9 @@ public class Jeu {
                 e.printStackTrace();
             }
         }
-        if (i != nbNiveaux) {
-            dirNiveaux.delete();
+        if (i != nbNiveaux) { /// verifier si l'user à supprimer un niveau manuellement pour le creer une
+                              /// autre fois.
+            dirNiveaux.delete();/// éffacer tout le répertoire Niveaux et créer les niveaux une autres fois.
             Jeu.sauvegarderNiveau(
                     new Niveau(1, new Plateau(Plateau.plateauNiveau1()), new Conditions(2, 60), new Aide(0, 0, 0)));
 
@@ -159,7 +160,7 @@ public class Jeu {
         }
     }
 
-    public static void sauvegarderNiveau(Niveau niveau) {
+    public static void sauvegarderNiveau(Niveau niveau) { /// sauvegarder les niveaux.
         final String niv = "Niveau";
         ObjectOutputStream writer;
         try {
@@ -172,7 +173,7 @@ public class Jeu {
         }
     }
 
-    private static void telechargerJoueurs() {
+    private static void telechargerJoueurs() {/// télécharger les joueurs.
         joueurs = new ArrayList<>();
         ObjectInputStream reader;
         File dirJoueurs = new File("src/Model/Joueurs");
@@ -194,7 +195,7 @@ public class Jeu {
         nbJoueurs = joueurs.size();
     }
 
-    public static void sauvegarderJoueurs() {
+    public static void sauvegarderJoueurs() { /// sauvegarder les joueurs.
         final String joueur = "Joueur";
         ObjectOutputStream writer = null;
         if (nbJoueurs != 0) {
@@ -241,14 +242,14 @@ public class Jeu {
         return choix;
     }
 
-    public static Joueur creerJoueur(String nom, String nomUser) {
+    public static Joueur creerJoueur(String nom, String nomUser) { /// création d'un nouveau joueur.
         Joueur joueur = new Joueur(nom, nomUser);
         joueurs.add(joueur);
         nbJoueurs++;
         return joueur;
     }
 
-    public static Joueur connexion(String nomUser) {
+    public static Joueur connexion(String nomUser) { /// connexion en tant que joueur existant.
 
         for (Joueur joueur : joueurs) {
             if (joueur.getNomUtilisateur().equals(nomUser)) {
@@ -258,7 +259,7 @@ public class Jeu {
         return null;
     }
 
-    public static boolean containsJoueurByUserName(String uName) {
+    public static boolean containsJoueurByUserName(String uName) { /// voir si un joueur existe ou pas.
         for (Joueur joueur : joueurs) {
             if (joueur.getNomUtilisateur().equals(uName))
                 return true;
