@@ -17,14 +17,12 @@ public class Jeu {
     private static int nbNiveaux = 3;
     private static ArrayList<Joueur> joueurs;
     private static int nbJoueurs = 1;
-    private static Parametres parameteresDuJeu;
     /// utilisé dans toutes les lectures.
     private static Scanner sc = new Scanner(System.in);
 
     public static void lancerJeu() {/// elle fait la configuration nécessaire pour lancer le jeu.
         telechargerNiveaux();
         telechargerJoueurs();
-        telechargerParametresDuJeu();
     }
 
     public static Partie lancerPartie(Joueur joueur) {
@@ -211,11 +209,6 @@ public class Jeu {
                 e.printStackTrace();
             }
         }
-    }
-
-    private static void telechargerParametresDuJeu() {
-        // explain here
-
     }
 
     private static void welcome() {

@@ -1,0 +1,63 @@
+Date : 2021-01-08 01:38:05
+Directory : c:\Users\chemo\Desktop\PRS\PetRescueSagaUI
+Total : 32 files,  2202 codes, 233 comments, 536 blanks, all 2971 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| Java     |         31 |      2,181 |        233 |        528 |      2,942 |
+| Markdown |          1 |         21 |          0 |          8 |         29 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                      | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                         |         32 |      2,202 |        233 |        536 |      2,971 |
+| src                                                                                       |         31 |      2,181 |        233 |        528 |      2,942 |
+| src\Controller                                                                            |          1 |         53 |          0 |         15 |         68 |
+| src\Model                                                                                 |         15 |      1,270 |         81 |        224 |      1,575 |
+| src\Model\Environnement                                                                   |          9 |      1,106 |         61 |        171 |      1,338 |
+| src\Model\Movible                                                                         |          6 |        164 |         20 |         53 |        237 |
+| src\View                                                                                  |         14 |        842 |        152 |        283 |      1,277 |
++-------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                                  | language | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\README.md                                      | Markdown |         21 |          0 |          8 |         29 |
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\src\App.java                                   | Java     |         16 |          0 |          6 |         22 |
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\src\Controller\MainWindowController.java       | Java     |         53 |          0 |         15 |         68 |
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\src\Model\Environnement\Aide.java              | Java     |         59 |          0 |         17 |         76 |
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\src\Model\Environnement\Conditions.java        | Java     |         21 |          3 |          7 |         31 |
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\src\Model\Environnement\ElementHistorique.java | Java     |         27 |          3 |         10 |         40 |
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\src\Model\Environnement\Jeu.java               | Java     |        247 |          4 |         22 |        273 |
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\src\Model\Environnement\Joueur.java            | Java     |         63 |          3 |         17 |         83 |
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\src\Model\Environnement\Niveau.java            | Java     |         45 |          4 |         11 |         60 |
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\src\Model\Environnement\Partie.java            | Java     |        181 |         13 |         41 |        235 |
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\src\Model\Environnement\Plateau.java           | Java     |        454 |         27 |         41 |        522 |
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\src\Model\Environnement\UserNotFound.java      | Java     |          9 |          4 |          5 |         18 |
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\src\Model\Movible\Animal.java                  | Java     |         24 |          6 |          6 |         36 |
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\src\Model\Movible\Brique.java                  | Java     |         22 |          3 |          7 |         32 |
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\src\Model\Movible\Case.java                    | Java     |         55 |          3 |         18 |         76 |
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\src\Model\Movible\Couleur.java                 | Java     |         31 |          0 |          9 |         40 |
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\src\Model\Movible\Element.java                 | Java     |         12 |          4 |          6 |         22 |
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\src\Model\Movible\Obstacle.java                | Java     |         20 |          4 |          7 |         31 |
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\src\View\AidePanel.java                        | Java     |         42 |          3 |          9 |         54 |
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\src\View\AnimalView.java                       | Java     |         26 |          3 |          7 |         36 |
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\src\View\AudioGame.java                        | Java     |         47 |          7 |         18 |         72 |
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\src\View\ComponentView.java                    | Java     |         10 |          3 |          6 |         19 |
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\src\View\ConnexionView.java                    | Java     |         49 |         11 |         16 |         76 |
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\src\View\EmptyBlockView.java                   | Java     |         15 |          3 |          7 |         25 |
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\src\View\GamePane.java                         | Java     |        139 |         26 |         49 |        214 |
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\src\View\HistoriqueView.java                   | Java     |         47 |         10 |         15 |         72 |
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\src\View\InscriptionView.java                  | Java     |         59 |         11 |         20 |         90 |
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\src\View\MainWindow.java                       | Java     |        147 |         22 |         54 |        223 |
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\src\View\MenuJeu.java                          | Java     |         63 |         13 |         19 |         95 |
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\src\View\ObstacleView.java                     | Java     |         32 |          5 |         14 |         51 |
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\src\View\PlateauPanel.java                     | Java     |        154 |         32 |         44 |        230 |
+| c:\Users\chemo\Desktop\PRS\PetRescueSagaUI\src\View\View.java                             | Java     |         12 |          3 |          5 |         20 |
+| Total                                                                                     |          |      2,202 |        233 |        536 |      2,971 |
++-------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+

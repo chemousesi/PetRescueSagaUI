@@ -12,6 +12,7 @@ public class App {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
+                
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.setVisible(true);
             }
